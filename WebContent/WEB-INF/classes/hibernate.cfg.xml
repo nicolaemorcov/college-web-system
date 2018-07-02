@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC  
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"  
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+          
+          <hibernate-configuration>
+          
+          	<session-factory>
+          		<!-- SQL Dialect -->
+          		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+          		
+          		<!-- Database connection Settings -->
+          		<!-- the JDBC Driver class -->
+          		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+          		<!-- The URL to the database -->
+          		<property name="connection.url">jdbc:mysql://127.0.0.1:3307/mydb</property>
+          		<!-- username of the db -->
+          		<property name="connection.username">root</property>
+          		<!-- password of the db -->
+          		<property name="connection.password">kolia</property>
+          		
+          		<property name="connection.pool.size">1</property>
+          		
+          		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+				<!-- show all executed sql statements -->
+				<property name="hibernate.show_sql">true</property>
+				
+				
+				<!-- Map the classes -->
+				<!-- Each pojo class represents a table in db -->
+				<mapping class="com.kolia.entities.User"/>
+				
+          	</session-factory>
+          
+          </hibernate-configuration>
