@@ -6,12 +6,12 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.kolia.entities.Course;
 import com.kolia.entities.User;
 import com.kolia.hibernate.util.MyDBManager;
 import com.kolia.services.CourseService;
@@ -20,16 +20,16 @@ import com.kolia.services.UserService;
 import net.sf.json.JSONObject;
 
 /**
- * Servlet implementation class PopulateData
+ * Servlet implementation class PopulateCourses
  */
-@WebServlet("/PopulateData")
-public class PopulateData extends HttpServlet {
+@WebServlet("/PopulateCourses")
+public class PopulateCourses extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PopulateData() {
+    public PopulateCourses() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,10 +48,10 @@ public class PopulateData extends HttpServlet {
 //		PrintWriter out = response.getWriter();
 		
 		System.out.println("Getting the data for Kolia........");
-		List<User> users = userService.getAllUsers();
-		System.out.println(users);
+		List<Course> courses = courseService.getAllCourses();
+		System.out.println(courses);
 		JSONObject json = new JSONObject();
-		json.put("users", users);
+		json.put("courses", courses);
 //		Gson gson = new Gson();
 //		String data = gson.toJson(users);
 //		out.print(data);
@@ -62,10 +62,6 @@ public class PopulateData extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		
-//		out.close();
-		
 	}
 
 	/**

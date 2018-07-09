@@ -1,10 +1,13 @@
 package com.kolia.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,10 +23,26 @@ public class User {
 	private String userId;
 	private String password;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="course_id")
+	private Course course;
+	
 	public User() {
 	}
 
+	
+	//This is for registering user to a course
+//	public User(String firstName, String lastName, String email, Course course) {
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.email = email;
+//		this.course = course;
+//	}
+	
+	
+	// This constructor is for registering
 	public User(String firstName, String lastName, String email, String userId, String password) {
+		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -31,8 +50,8 @@ public class User {
 		this.password = password;
 	}
 
-	
-	
+
+
 	public int getId() {
 		return id;
 	}
@@ -80,8 +99,16 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
-	
+
+
+
+	public Course getCourse() {
+		return course;
+	}
+
+
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
 }

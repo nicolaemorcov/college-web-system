@@ -1,9 +1,11 @@
 package com.kolia.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +40,8 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		UserService service = new UserService();
 		User user;
 		
@@ -47,8 +51,11 @@ public class LoginServlet extends HttpServlet {
 		boolean result = service.authenticateUser(userId, password);
 		user = service.getUserByUserId(userId);
 		if(result == true) {
-			request.getSession().setAttribute("user", user);
-			response.sendRedirect("home.html");
+			request.getSession().setAttribute("userId", userId);
+			request.getRequestDispatcher("home.html").include(request, response);
+			out.println("Hi " + userId);
+			Cookie c = new Cookie("userId", userId);
+			response.addCookie(c);
 		}
 		else {
 			response.sendRedirect("error.html");

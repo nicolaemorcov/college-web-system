@@ -1,7 +1,6 @@
 package com.kolia.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.kolia.entities.User;
 import com.kolia.services.UserService;
 
 /**
- * Servlet implementation class Controller
+ * Servlet implementation class EditServlet2
  */
-@WebServlet("/Controller")
-public class Controller extends HttpServlet {
+@WebServlet("/EditServlet2")
+public class EditServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Controller() {
+    public EditServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,9 +38,24 @@ public class Controller extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UserService service = new UserService();
+		User user;
+		String sid = request.getParameter("id");
+		String userId = request.getParameter("userId");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
 		
-		
-		
+		int id = Integer.parseInt(sid);
+		user = service.getUserById(id);
+		user.setUserId(userId);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(email);
+		user.setPassword(password);
+		service.update(user);
+		response.sendRedirect("home.html");
 	}
 
 }

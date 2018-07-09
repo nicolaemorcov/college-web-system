@@ -22,10 +22,32 @@
     <servlet-class>com.kolia.servlets.PopulateData</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>Controller</servlet-name>
-  	<servlet-class>com.kolia.servlets.Controller</servlet-class>
+    <servlet-name>PopulateCourses</servlet-name>
+    <servlet-class>com.kolia.servlets.PopulateCourses</servlet-class>
   </servlet>
-  
+  <servlet>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>com.kolia.servlets.Controller</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CourseServlet</servlet-name>
+    <servlet-class>com.kolia.servlets.CourseServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditServlet</servlet-name>
+    <servlet-class>com.kolia.servlets.EditServlet</servlet-class>
+  </servlet><servlet>
+    <servlet-name>EditServlet2</servlet-name>
+    <servlet-class>com.kolia.servlets.EditServlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditServlet</servlet-name>
+    <url-pattern>/edit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditServlet2</servlet-name>
+    <url-pattern>/edit2</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
@@ -39,7 +61,15 @@
     <url-pattern>/populateData</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>Controller</servlet-name>
-  	<url-pattern>/controller</url-pattern>
+    <servlet-name>PopulateCourses</servlet-name>
+    <url-pattern>/populateCourses</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/controller</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CourseServlet</servlet-name>
+    <url-pattern>/courseServlet</url-pattern>
   </servlet-mapping>
 </web-app>

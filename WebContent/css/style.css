@@ -131,3 +131,7 @@ width: max-content;
     color: #ebebeb;
     font-size: 11px;
 }
+.main {
+    font-size: 120%;
+    color: red;
+}

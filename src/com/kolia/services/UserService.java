@@ -3,8 +3,8 @@ package com.kolia.services;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
+import com.kolia.entities.Course;
 import com.kolia.entities.User;
 import com.kolia.hibernate.util.MyDBManager;
 
@@ -31,25 +31,31 @@ public class UserService {
 		
 	}
 	
+//	public void enroll(User user) {
+//		dbManager.startTransaction();
+//		
+//		
+//	}
+	
 	public boolean isUserExists(User user) {
 //		Put these two lines in a method called 'starTransaction()';
-//		Session session = dbManager.getDBFactory().openSession();
-//		session.beginTransaction();
-		dbManager.startTransaction();
+		Session session = dbManager.getDBFactory().openSession();
+		session.beginTransaction();
+//		dbManager.startTransaction();
 		
 		boolean result = false;
 		String sql = ("FROM User WHERE userId='" + user.getUserId() + "'");
 		// add session.createQuery() in a method called getSingleResult(String sql)
 //		User u = (User) session.createQuery(sql).uniqueResult();
-		User u = (User) dbManager.getSingleResult(sql);
+		User u = (User) session.createQuery(sql).uniqueResult();
 		if (u != null) {
 			result = true;
 		}
 		
 //		Put these two lines in a method called 'closeTransaction()';
-//		session.getTransaction().commit();
-//		session.close();
-		dbManager.closeTransaction();
+		session.getTransaction().commit();
+		session.close();
+//		dbManager.closeTransaction();
 		return result;
 	}
 	
@@ -66,6 +72,15 @@ public class UserService {
 		return user;
 		}
 	
+	public User getUserById(int id) {
+		dbManager.startTransaction();
+		User user;
+		String sql = ("FROM User WHERE id='" + id + "'");
+		user = (User) dbManager.getSingleResult(sql);
+		dbManager.closeTransaction();
+		return user;
+ 	}
+	
 	public List<User> getAllUsers(){
 		dbManager.startTransaction();
 		List<User> users = dbManager.getResultList("FROM User");
@@ -77,6 +92,23 @@ public class UserService {
 		dbManager.closeTransaction();
 		return users;
 	}
+	
+	public void update(User user) {
+		dbManager.startTransaction();
+		dbManager.saveOrUpdate(user);
+		dbManager.closeTransaction();
+		
+	}
+	
+	public void delete(int id) {
+		dbManager.startTransaction();
+		String sql = "FROM User WHERE id='" + id + "'";
+		User user = (User) dbManager.getSingleResult(sql);
+		dbManager.delete(user);
+		dbManager.closeTransaction();
+	}
+	
+	
 	
 	public boolean authenticateUser(String userId, String password) {
 		User user = getUserByUserId(userId);

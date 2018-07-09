@@ -69,7 +69,17 @@ public class MyDBManager {
 		return session.createQuery(sql, entityClass);
 	}
 	
+	public void saveOrUpdate(Object arg) {
+		session.saveOrUpdate(arg);
+	}
 	
+	public void delete(Object arg) {
+		session.delete(arg);;
+	}
+	
+//	public Session getSession() {
+//		return session;
+//	}
 
 	
 }

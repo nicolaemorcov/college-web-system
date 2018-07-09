@@ -5,25 +5,25 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kolia.entities.User;
-import com.kolia.services.UserService;
+import com.kolia.entities.Course;
+import com.kolia.services.CourseService;
 
 /**
- * Servlet implementation class Controller
+ * Servlet implementation class CourseServlet
  */
-@WebServlet("/Controller")
-public class Controller extends HttpServlet {
+@WebServlet("/CourseServlet")
+public class CourseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Controller() {
+    public CourseServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,8 +40,23 @@ public class Controller extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		CourseService service = new CourseService();
+		Course course;
 		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
+		String courseName = request.getParameter("courseName");
+		String l = request.getParameter("courseLength");
+		int length = Integer.parseInt(l);
+		course = new Course(courseName, length);
+		service.registerCourse(course);
+		request.getRequestDispatcher("home.html").include(request, response);
+		out.println("<p> Record saved successfully! </p>");
+		Cookie ck[]  = request.getCookies();
+		out.println("Here you are again " + ck[0].getValue());
+		out.close();
 		
 	}
 
