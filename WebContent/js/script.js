@@ -47,5 +47,12 @@ $(document).ready(function(){
        $('#edit').replaceWith($('<input>' + $('#edit').innerHTML + '</input>'));
     });
 
-
+	$( "#myButton" ).click(function() {
+		$.get("Controller", function(data){
+			var user = JSON.parse(data);
+			console.log("I m in here")
+			console.log(data)
+		})
+	    });
+	
 })

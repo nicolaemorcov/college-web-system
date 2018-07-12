@@ -1,17 +1,19 @@
 package com.kolia.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.kolia.entities.User;
+import com.kolia.hibernate.util.MyDBManager;
 import com.kolia.services.UserService;
+
+import net.sf.json.JSONObject;
 
 /**
  * Servlet implementation class Controller
@@ -33,16 +35,32 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		UserService service = new UserService();
+		MyDBManager dbManager = new MyDBManager();
+		System.out.println("Hi from Controller");
+		String sid = request.getParameter("userId");
+		int id = Integer.parseInt(sid);
+		User user = service.getUserById(id);
+		JSONObject json = new JSONObject();
+		json.put("user", user);
+		
+		try {
+			response.getOutputStream()
+			.write(json.toString().getBytes("UTF-8"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("home.html");
+		dispatcher.include(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

@@ -14,6 +14,10 @@
     <servlet-class>com.kolia.servlets.LoginServlet</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>Controller</servlet-name>
+  	<servlet-class>com.kolia.servlets.Controller</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>com.kolia.servlets.RegisterServlet</servlet-class>
   </servlet>
@@ -26,17 +30,14 @@
     <servlet-class>com.kolia.servlets.PopulateCourses</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>Controller</servlet-name>
-    <servlet-class>com.kolia.servlets.Controller</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>CourseServlet</servlet-name>
     <servlet-class>com.kolia.servlets.CourseServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>EditServlet</servlet-name>
     <servlet-class>com.kolia.servlets.EditServlet</servlet-class>
-  </servlet><servlet>
+  </servlet>
+  <servlet>
     <servlet-name>EditServlet2</servlet-name>
     <servlet-class>com.kolia.servlets.EditServlet2</servlet-class>
   </servlet>
@@ -65,11 +66,11 @@
     <url-pattern>/populateCourses</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>Controller</servlet-name>
-    <url-pattern>/controller</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>CourseServlet</servlet-name>
     <url-pattern>/courseServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/controller</url-pattern>
   </servlet-mapping>
 </web-app>
