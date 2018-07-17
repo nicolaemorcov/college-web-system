@@ -1,13 +1,16 @@
 $(document).ready(function(){
-	$.get("PopulateData", function(data){
-		var studentsList = JSON.parse(data);
+	$.get("services/users", function(data){
+		var studentsList = data.data.users;
+		var courseList = data.data.courses;
 		var trHTML = '';
+		var trHTML1 = '';
 		console.log("Hello KOLIA !");
-//		console.log(data);
+		console.log(studentsList);
+		console.log(courseList);
 		var welcome = "<h2>Welcome ";
 		
-		for (var i = 0; i < studentsList.users.length; i++) {
-			var student = studentsList.users[i];
+		for (var i = 0; i < studentsList.length; i++) {
+			var student = studentsList[i];
 			var courseId = student.course;
 			if(courseId == null){
 				courseId = "N/A"
@@ -27,7 +30,23 @@ $(document).ready(function(){
 		}
 		$('#table').append(trHTML);
 		
+		for (var i = 0; i < courseList.length; i++) {
+			var course = courseList[i];
+
+			
+			
+			trHTML1 += '<tr class="courses" id="' + course.id  + '"><td>'
+			+ course.id + '</td><td>'
+			+ course.name + '</td><td>'
+			+ course.length + '</td>'
+			+ '<td class="edit" id="edit">'
+			+ '<a href="EditServlet?id=' + course.id + '">edit</td><td id="delete">'
+			+ '<a href="DeleteServlet?id=' + course.id + '">delete</td></tr>';
+		}
+		$('#table1').append(trHTML1);
+		
 	})
+	
 })
 
 $(document).ready(function(){

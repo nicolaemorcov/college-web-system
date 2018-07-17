@@ -10,6 +10,14 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
+  	<servlet-name>ServiceEndPoint</servlet-name>
+  	<servlet-class>com.kolia.servlets.ServiceEndPoint</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServiceEndPoint</servlet-name>
+  	<url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.kolia.servlets.LoginServlet</servlet-class>
   </servlet>

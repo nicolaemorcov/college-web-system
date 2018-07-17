@@ -9,9 +9,17 @@ import com.kolia.entities.User;
 import com.kolia.hibernate.util.MyDBManager;
 
 public class UserService {
-	
 	MyDBManager dbManager = new MyDBManager();
 	
+	
+	
+	public UserService() {
+	}
+
+	public UserService(MyDBManager dbManager) {
+		this.dbManager = dbManager;
+	}
+
 	public boolean registerUser(User user) {
 //		Session session = dbManager.getDBFactory().openSession();
 //		session.beginTransaction();
