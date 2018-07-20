@@ -4,9 +4,9 @@ $(document).ready(function(){
 		var courseList = data.data.courses;
 		var trHTML = '';
 		var trHTML1 = '';
-		console.log("Hello KOLIA !");
-		console.log(studentsList);
-		console.log(courseList);
+//		console.log("Hello KOLIA !");
+//		console.log(studentsList);
+//		console.log(courseList);
 		var welcome = "<h2>Welcome ";
 		
 		for (var i = 0; i < studentsList.length; i++) {

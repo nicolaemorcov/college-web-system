@@ -30,7 +30,6 @@ public class HomeHandler extends Handler{
 		List<User> users = service.getAllUsers();
 		List<Course> courses = courseService.getAllCourses();
 		System.out.println("I'm in UserHandler, getting all users for You");
-		
 		JSONObject json = new JSONObject();
 		json.put("users", users);
 		json.put("courses", courses);
