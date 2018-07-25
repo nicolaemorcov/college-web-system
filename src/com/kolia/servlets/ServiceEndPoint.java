@@ -10,11 +10,11 @@ import java.util.regex.Pattern;
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;
 import com.kolia.handlers.ResponseHandler;
 import com.kolia.handlers.HomeHandler;
@@ -22,7 +22,6 @@ import com.kolia.handlers.HomeHandler;
 /**
  * Servlet implementation class ServiceEndPoint
  */
-@WebServlet("/ServiceEndPoint")
 public class ServiceEndPoint extends Endpoint {
 	private static final long serialVersionUID = 1L;
        
@@ -72,6 +71,7 @@ public class ServiceEndPoint extends Endpoint {
 	protected void initializeMapping() {
 		log.info("adding the handlers");
 		addHandler(HomeHandler.class, "(?i)^/services/users");
+		addHandler(EditHandler.class, "(?i)^/services/edit");
 	}
 	
 }

@@ -11,11 +11,12 @@ import java.util.regex.Pattern;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;
 import com.kolia.handlers.ResponseHandler;
 import com.kolia.handlers.HomeHandler;
@@ -24,7 +25,6 @@ import com.kolia.hibernate.util.MyDBManager;
 /**
  * Servlet implementation class Endpoint
  */
-@WebServlet("/Endpoint")
 public class Endpoint extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -87,6 +87,8 @@ public class Endpoint extends HttpServlet {
 				switch (handlerClass.getName()) {
 				case "com.kolia.handlers.HomeHandler":
 					return new HomeHandler(dbManager);
+				case "com.kolia.handlers.EditHandler":
+					return new EditHandler(dbManager);
 				}
 
 			}

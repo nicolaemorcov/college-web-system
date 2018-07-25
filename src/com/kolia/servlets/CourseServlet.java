@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import com.kolia.services.CourseService;
 /**
  * Servlet implementation class CourseServlet
  */
-@WebServlet("/CourseServlet")
 public class CourseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
