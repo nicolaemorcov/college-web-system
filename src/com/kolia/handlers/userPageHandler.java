@@ -5,56 +5,36 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.google.gson.Gson;
-import com.kolia.entities.Course;
 import com.kolia.entities.User;
 import com.kolia.hibernate.util.MyDBManager;
 import com.kolia.services.CourseService;
 import com.kolia.services.UserService;
 
-public class EditHandler extends Handler{
-	UserService userService;
-	CourseService courseService;
-	public EditHandler(MyDBManager dbManager) {
-		this.userService = new UserService();
-		this.courseService = new CourseService();
-		this.dbManager = dbManager;
-	}
-	
-	MyDBManager dbManager = new MyDBManager();
-	
-//	@Override
-//	public ResponseHandler doGet(HttpServletRequest request) {
-//	
-//		
-//		
-//	}
-//	
-	@Override
-	public ResponseHandler doPost(HttpServletRequest request) {
-		
-		String body = getBody(request);
-		System.out.println(body.contains("name"));
-		System.out.println(body.contains("Name"));
-		
-		if(body.contains("Name")){
-			User u = new Gson().fromJson(body, User.class);
-			userService.update(u);
-		}
-		
-		else if(body.contains("name")) {
-			Course c = new Gson().fromJson(body,  Course.class);
-			courseService.update(c);
-		}
-		
-	
-//		userService.update(u);
+import jdk.nashorn.api.scripting.JSObject;
+import net.sf.json.JSONObject;
 
-		
-		return new ResponseHandler();
-		
+public class userPageHandler extends Handler{
+	UserService service;
+	CourseService courseService;
+	
+	public userPageHandler(MyDBManager dbManager) {
+		this.service = new UserService();
+		this.courseService = new CourseService();
 	}
 	
+	public ResponseHandler doPost(HttpServletRequest request) {
+		System.out.println("Getting the user details (i'm in userpageHandler)");
+		
+		String theId = getBody(request);
+		int id = Integer.parseInt(theId);
+		User user = service.getUserById(id);
+		JSONObject json = new JSONObject();
+		json.put("user", user);
+		
+		return new JSONResponse(json);
+	}
+	
+
 	private String getBody(HttpServletRequest req) {
 		  String body = "";
 		  if (req.getMethod().equals("POST") )
@@ -85,5 +65,5 @@ public class EditHandler extends Handler{
 		  return body;
 		}
 	
-	
 }
+

@@ -22,23 +22,23 @@
                 <p> Welcome </p>
             </div>
 
-            <button ng-click="test()">Toggle Button</button>
+            <button ng-click="test()">Show/Hide</button>
 
-            <table id="table" ng-show="showEdit">
+			<div ng-show="showEdit">
+			<label ng-show="showEdit">Search: <input ng-model="searchText"></label>
+            <table id="table">
                 <thead>
                     <tr>
                         <th id="userId">Userd Id</th>
-                        <th>First name</th>
-                        <th>Last Name</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Course</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="x in users" id="{{x.id}}" ng-model="selectedUser" ng-click="setSelectedUser(x)" ng-class="{redDiv: enter, yellowDiv: leave}" ng-mouseenter="enter=true; leave=false;" ng-mouseleave="leave=true; enter=false;">
+                    <tr ng-repeat="x in users | filter:searchText" id="{{x.id}}" ng-model="selectedUser" ng-click="setSelectedUser(x)" ng-class="{redDiv: enter, yellowDiv: leave}" ng-mouseenter="enter=true; leave=false;" ng-mouseleave="leave=true; enter=false;">
                         <td>{{x.userId}}</td>
-                        <td>{{x.firstName}}</td>
-                        <td>{{x.lastName}}</td>
+                        <td><a href="{{x.userId}}.html">{{x.firstName + " " + x.lastName}}</a></td>
                         <td>{{x.email}}</td>
                         <td>{{x.course.name}}</td>
                     </tr>
@@ -46,18 +46,19 @@
                 </tbody>
             </table>
             
-
+			</div>
             <br>
             <table id="table1">
                 <thead>
+
                     <tr>
                         <th>course id</th>
                         <th>Course Name</th>
                         <th>Course Length</th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="x in courses">
-                    <tr ng-class="{redDiv: enter, yellowDiv: leave}" ng-mouseenter="enter=true; leave=false;" ng-mouseleave="leave=true; enter=false;">
+                <tbody>
+                    <tr ng-repeat="x in courses" id="{{x.id}}" ng-model="selectedItem" ng-click="setSelectedCourse(x)" ng-class="{redDiv: enter, yellowDiv: leave}" ng-mouseenter="enter=true; leave=false;" ng-mouseleave="leave=true; enter=false;">
                         <td>{{x.id}}</td>
                         <td>{{x.name}}</td>
                         <td>{{x.length}}</td>
@@ -75,7 +76,7 @@
 
     </form>
     
-	<form id="EditForm">
+	<form id="EditForm" class="editTables" style="float: left;">
 		<div>
 			<label>First Name:</label>
 			<div>
@@ -116,15 +117,40 @@
 			</div>
 		</div>
 	</form>
+	
+	<form id="EditCourseForm" class="editTables" style="float: right;">
+		<div>
+			<label>Course Name:</label>
+			<div>
+				<input type="text" name="courseName" ng-model="selectedCourse.name"/>
+			</div>
+		</div>
+		<div>
+			<label>Course Length:</label>
+			<div>
+				<input type="text" name="courseName" ng-model="selectedCourse.length"/>
+			</div>
+		</div>
+		<div>
+			<div>
+				<input type="button" value="Edit" ng-click="edit()">
+			</div>
+		</div>
+		<div>
+			<div>
+				<input type="button" value="Delete" ng-click="delete()">
+			</div>
+		</div>
+	</form>
 
 	<br>	
 	<br>	
 	
-    <form name="SearchUser" ng-submit="search(userId)">
+<!--     <form name="SearchUser" ng-submit="search(userId)">
         <input required placeholder="Enter userId or email" type="search" ng-model="userId" />
         <input type="submit" value="Search" />
-        <!-- <span>{{userId ? user : 'Nothing'}}</span> -->
-    </form>
+        <span>{{userId ? user : 'Nothing'}}</span>
+    </form> -->
 
 
 </body>

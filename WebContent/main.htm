@@ -1,0 +1,149 @@
+<div ng-controller="mainController">
+	<form>
+		<div id="container" align="center">
+			<h1>Result Page</h1>
+			<b>This is simple result page</b><br /> <a href="logout.html">Logout</a>
+
+			<div>
+				<p>Welcome</p>
+			</div>
+
+			<button ng-click="test()">Show/Hide</button>
+
+			<div ng-show="showEdit">
+				<label ng-show="showEdit">Search: <input
+					ng-model="searchText"></label>
+				<table id="table">
+					<thead>
+						<tr>
+							<th>SNO</th>
+							<th id="userId">Userd Id</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Course</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="x in users | filter:searchText" id="{{x.id}}"
+							ng-model="selectedUser" ng-click="setSelectedUser(x)">
+							<td>{{x.id}}</td>
+							<td>{{x.userId}}</td>
+							
+							<td><a ng-href="#!userDetail">{{x.firstName + " " + x.lastName}}</a></td>
+							<td>{{x.email}}</td>
+							<td>{{x.course.id}}</td>
+							<td>
+								<div class="buttons">
+									<button>Edit</button>
+									<button>Delete</button>
+								</div>
+							</td>
+							
+						</tr>
+
+					</tbody>
+				</table>
+				
+
+			</div>
+			<br>
+			<table id="table1">
+				<thead>
+
+					<tr>
+						<th>course id</th>
+						<th>Course Name</th>
+						<th>Course Length</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in courses" id="{{x.id}}" ng-model="selectedItem"
+						ng-click="setSelectedCourse(x)">
+						<td class="courseIdLength">{{x.id}}</td>
+						<td>{{x.name}}</td>
+						<td class="courseIdLength">{{x.length}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="#!enroll">Enroll to a Course</a><br> <a
+				href="courseRegister.html">Register a Course</a>
+
+
+
+		</div>
+
+
+
+	</form>
+	
+	 </form>
+    
+	<form id="EditForm" class="editTables" style="float: left;">
+		<div>
+			<label>First Name:</label>
+			<div>
+				<input type="text" name="firstName" ng-model="selectedUser.firstName"/>
+			</div>
+		</div>
+		<div>
+			<label>Last Name:</label>
+			<div>
+				<input type="text" name="lastName" ng-model="selectedUser.lastName"/>
+			</div>
+		</div><div>
+			<label>userId:</label>
+			<div>
+				<input type="text" name="userId" ng-model="selectedUser.userId"/>
+			</div>
+		</div>
+		<div>
+			<label>Password:</label>
+			<div>
+				<input type="password" name="password" ng-model="selectedUser.password"/>
+			</div>
+		</div>
+		<div>
+			<label>Email:</label>
+			<div>
+				<input type="email" name="email" ng-model="selectedUser.email"/>
+			</div>
+		</div>
+		<div>
+			<div>
+				<input type="button" value="Edit" ng-click="edit()">
+			</div>
+		</div>
+		<div>
+			<div>
+				<input type="button" value="Delete" ng-click="delete()">
+			</div>
+		</div>
+	</form>
+	
+	<form id="EditCourseForm" class="editTables" style="float: right;">
+		<div>
+			<label>Course Name:</label>
+			<div>
+				<input type="text" name="courseName" ng-model="selectedCourse.name"/>
+			</div>
+		</div>
+		<div>
+			<label>Course Length:</label>
+			<div>
+				<input type="text" name="courseName" ng-model="selectedCourse.length"/>
+			</div>
+		</div>
+		<div>
+			<div>
+				<input type="button" value="Edit" ng-click="edit()">
+			</div>
+		</div>
+		<div>
+			<div>
+				<input type="button" value="Delete" ng-click="delete()">
+			</div>
+		</div>
+	</form>
+
+</div>

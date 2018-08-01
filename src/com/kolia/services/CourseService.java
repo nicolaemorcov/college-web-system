@@ -59,4 +59,10 @@ public class CourseService {
 		return course;
 	}
 	
+	public void update(Course course) {
+		dbManager.startTransaction();
+		dbManager.saveOrUpdate(course);
+		dbManager.closeTransaction();
+	}
+	
 }

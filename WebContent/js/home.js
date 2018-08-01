@@ -3,14 +3,14 @@ var app = angular.module("myViewer", []);
 var mainController = function($scope, $http, $log) {
     //	$scope.user = "Nicolae Morcov";
 
-    $scope.showEdit = false;
+    $scope.showEdit = true;
 
     $scope.test = function() {
         console.log("Button clicked, table should appear.")
-        if ($scope.showEdit == true) {
-            $scope.showEdit = false;
-        } else {
+        if ($scope.showEdit == false) {
             $scope.showEdit = true;
+        } else {
+            $scope.showEdit = false;
         }
     }
 
@@ -32,6 +32,13 @@ var mainController = function($scope, $http, $log) {
     	console.log(x);
     	$scope.selectedUser = x;
     }
+    
+//  SetSelectedCourse
+    $scope.setSelectedCourse = function(x){
+    	console.log("Button clicked, user should appear.");
+    	console.log(x);
+    	$scope.selectedCourse = x;
+    }
 
 //    get all data from db
     $http.get("services/users").then(function(response) {
@@ -42,32 +49,39 @@ var mainController = function($scope, $http, $log) {
     
 //    edit User
     $scope.edit = function(){
-    	var userToEdit = $scope.users.find(x => x.id === $scope.selectedUser.id);
-    	console.log(userToEdit);
+    	var itemToEdit;
+    	if($scope.selectedUser != null){
+    		itemToEdit = $scope.users.find(x => x.id === $scope.selectedUser.id);
+    	}
+    	else{
+    		itemToEdit = $scope.courses.find(x => x.id === $scope.selectedCourse.id);
+    	}
+//    	var userToEdit = $scope.users.find(x => x.id === $scope.selectedUser.id);
+//    	var courseToEdit = $scope.courses.find(x => x.id === $scope.selectedCourse.id);
     	$http({
     		method: 'post',
     		url: 'services/edit',
     		contentType: 'application/json',
-    		data: userToEdit
+    		data: itemToEdit
     	}).success(function(data){
     		
     	})
     }
     
     
-//    search for users
-    $scope.search = function(userId) {
-        $scope.userList = [{}];
-        $log.info("Searching for " + $scope.users.userId + " blia");
-        angular.forEach($scope.users, function(value, key) {
-            console.log(key + value.userId);
-            if (userId == value.userId.toLowerCase() || userId == value.email.toLowerCase() || userId == value.lastName.toLowerCase()) {
-                $scope.user = value;
-                $scope.userList.push($scope.user);
-            }
-
-        })
-    }
+////    search for users
+//    $scope.search = function(userId) {
+//        $scope.userList = [{}];
+//        $log.info("Searching for " + userId + " blia");
+//        angular.forEach($scope.users, function(value, key) {
+//            console.log(key + value.userId);
+//            if (userId == value.userId.toLowerCase() || userId == value.email.toLowerCase() || userId == value.lastName.toLowerCase()) {
+//                $scope.user = value;
+//                $scope.userList.push($scope.user);
+//            }
+//
+//        })
+//    }
 
     //	$scope.id = angular.element(document.querySelector("#id")).val();
 

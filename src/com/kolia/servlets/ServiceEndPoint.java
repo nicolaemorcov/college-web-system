@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;
 import com.kolia.handlers.ResponseHandler;
+import com.kolia.handlers.userPageHandler;
 import com.kolia.handlers.HomeHandler;
 
 /**
@@ -72,6 +73,7 @@ public class ServiceEndPoint extends Endpoint {
 		log.info("adding the handlers");
 		addHandler(HomeHandler.class, "(?i)^/services/users");
 		addHandler(EditHandler.class, "(?i)^/services/edit");
+		addHandler(userPageHandler.class, "(?i)^/services/userDetails");
 	}
 	
 }
