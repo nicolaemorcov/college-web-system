@@ -1,5 +1,5 @@
 <h3>Enroll Form</h3>
-	<form action="EnrollServlet" method="post">
+	<form action="enroll" method="post">
 		<table id="table1" align="center" cellpadding="10">
 			<tr>
 				<td>userId</td>
@@ -7,7 +7,7 @@
 			</tr>
 			<tr>
 				<td>Course</td>
-				<td><select style="width: 150px">
+				<td><select name="course" style="width: 150px">
 					<option ng-repeat="c in Courses" >{{c.name}}</option>
 				</select></td>
 			</tr>

@@ -9,6 +9,9 @@ app.config(function($routeProvider) {
     }).when("/userDetail",{
     	templateUrl: "userDetail.htm",
     	controller: "userController"
+    }).when("/courseDetail",{
+    	templateUrl: "courseDetail.htm",
+    	controller: "courseController"
     }).when("/enroll",{
     	templateUrl: "enroll.htm",
     	controller: "enrollController"
@@ -54,8 +57,10 @@ app.factory("myCourses", function(){
 })
 
 app.controller("userController", function($scope, $http, myFactory){
+	var studentId;
 	var student = myFactory.get();
-	var studentId = student.id;
+	studentId = student.id;
+	console.log("UserController used");
 //	$scope.Student = student;
 //	console.log($scope.Student.id);
 //	console.log(student.id + " fdesf");
@@ -68,14 +73,46 @@ app.controller("userController", function($scope, $http, myFactory){
 		contentType: 'application/json',
 		data: studentId
 	}).then(function(data){
-		var student = data.data.data.user;
-		console.log(student);
-		$scope.Student = student;
+		$scope.student = data.data.data.user;
+//		console.log(student);
 	})
+	
+	$scope.Student = student;
+	console.log(student.id + " ************* " + $scope.Student.email);
+	console.log(student.firstName + " *-------------* " + $scope.Student.password);
+	
 	
 })
 
-app.controller("mainController", function($scope, $http, $log, myFactory, myCourses) {
+app.controller("courseController", function($scope, $http, myCourses){
+	var courseId;
+	var course = myCourses.get();
+	courseName = course.name;
+	console.log("CourseController used");
+//	$scope.Student = student;
+//	console.log($scope.Student.id);
+//	console.log(student.id + " fdesf");
+	
+	
+	
+	$http({
+		method: 'post',
+		url: 'services/courseDetails',
+		contentType: 'application/json',
+		data: courseName
+	}).then(function(data){
+		$scope.course = data.data.data.course;
+		console.log(course.courseFee);
+	})
+	
+//	$scope.Student = student;
+//	console.log(student.id + " ************* " + $scope.Student.email);
+//	console.log(student.firstName + " *-------------* " + $scope.Student.password);
+	
+	
+})
+
+app.controller("mainController", function($scope, $http, $location, $log, myFactory, myCourses) {
     $scope.message = "I did it";
 
     $scope.showEdit = true;
@@ -89,25 +126,25 @@ app.controller("mainController", function($scope, $http, $log, myFactory, myCour
         }
     }
 
-//    $scope.showUser = false;
-//    $scope.editUser = function(x) {
-//        console.log("Button clicked, user should appear.")
-//        console.log(x);
-//        if ($scope.showUser == true) {
-//            $scope.showUser = false;
-//        } else {
-//            $scope.showUser = true;
-//        }
-//    }
     
-    
-//    SetSelectedUser
-    $scope.setSelectedUser = function(x){
-    	console.log("Button clicked, user should appear.");
-    	console.log(x);
+    $scope.getUserPage = function(x){
+    	$location.path('userDetail').search({email: x.email});
     	$scope.selectedUser = x;
     	myFactory.set(x);
     }
+    $scope.getCoursePage = function(x){
+    	$location.path('courseDetail').search({course: x.id});
+    	$scope.selectedCourse = x;
+    	myCourses.set(x);
+    }
+    
+////    SetSelectedUser
+//    $scope.setSelectedUser = function(x){
+//    	console.log("Button clicked, user should appear.");
+//    	console.log(x);
+//    	$scope.selectedUser = x;
+//    	myFactory.set(x);
+//    }
     
 //  SetSelectedCourse
     $scope.setSelectedCourse = function(x){

@@ -47,8 +47,10 @@ public class CourseServlet extends HttpServlet {
 		
 		String courseName = request.getParameter("courseName");
 		String l = request.getParameter("courseLength");
+		String f = request.getParameter("tuitionFees");
+		double fee = Double.parseDouble(f);
 		int length = Integer.parseInt(l);
-		course = new Course(courseName, length);
+		course = new Course(courseName, length, fee);
 		service.registerCourse(course);
 		request.getRequestDispatcher("home.html").include(request, response);
 		out.println("<p> Record saved successfully! </p>");

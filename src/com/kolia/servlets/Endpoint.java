@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;
 import com.kolia.handlers.ResponseHandler;
+import com.kolia.handlers.coursePageHandler;
 import com.kolia.handlers.userPageHandler;
 import com.kolia.handlers.HomeHandler;
 import com.kolia.hibernate.util.MyDBManager;
@@ -92,6 +93,8 @@ public class Endpoint extends HttpServlet {
 					return new EditHandler(dbManager);
 				case "com.kolia.handlers.userPageHandler":
 					return new userPageHandler(dbManager);
+				case "com.kolia.handlers.coursePageHandler":
+					return new coursePageHandler(dbManager);
 				}
 
 			}

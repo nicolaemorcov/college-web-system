@@ -54,8 +54,7 @@ public class EnrollServlet extends HttpServlet {
 		course = cService.getCourseByName(courseName);
 		user.setCourse(course);
 		service.update(user);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("main.htm");
-		dispatcher.forward(request, response);
+		response.sendRedirect("index.html");
 //		out.close();
 		
 	}
