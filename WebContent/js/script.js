@@ -125,12 +125,61 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
             $scope.showEdit = false;
         }
     }
+    
+    $scope.selected = {};
+    
+    // gets the template to ng-include for a table row / item
+    $scope.getTemplate = function (x) {
+        if (x.id === $scope.selected.id) return 'edit';
+        else return 'display';
+    };
+    
+    $scope.editContact = function (x) {
+        $scope.selected = angular.copy(x);
+    };
 
+    $scope.saveContact = function (index) {
+        console.log("Saving contact");
+        var itemToEdit = $scope.users[index] = angular.copy($scope.selected);
+
+        $http({
+    		method: 'post',
+    		url: 'services/edit',
+    		contentType: 'application/json',
+    		data: itemToEdit
+    	}).then(function(data){
+    		
+    	})
+    	$scope.reset();
+    };
+    
+    $scope.deleteContact = function (index) {
+        console.log("Saving contact");
+        var userId = index.userId;
+
+        $http({
+    		method: 'post',
+    		url: 'services/delete',
+    		contentType: 'application/json',
+    		data: userId
+    	}).then(function(data){
+    		
+    	})
+    	$scope.reset();
+    };
+    
+    $scope.reset = function () {
+        $scope.selected = {};
+    };
+    
     
     $scope.getUserPage = function(x){
+//    	$scope.selectedUser = myFactory.get();
     	$location.path('userDetail').search({email: x.email});
-    	$scope.selectedUser = x;
     	myFactory.set(x);
+    }
+    $scope.editUser = function(){
+    	
     }
     $scope.getCoursePage = function(x){
     	$location.path('courseDetail').search({course: x.id});
@@ -162,6 +211,8 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
         myCourses.set(courses);
     })
 
+
+   
     
 //    edit User
     $scope.edit = function(){

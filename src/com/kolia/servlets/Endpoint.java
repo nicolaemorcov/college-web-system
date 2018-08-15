@@ -11,17 +11,18 @@ import java.util.regex.Pattern;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kolia.handlers.CsvHandler;
+import com.kolia.handlers.DeleteHandler;
 import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;
+import com.kolia.handlers.HomeHandler;
 import com.kolia.handlers.ResponseHandler;
 import com.kolia.handlers.coursePageHandler;
 import com.kolia.handlers.userPageHandler;
-import com.kolia.handlers.HomeHandler;
 import com.kolia.hibernate.util.MyDBManager;
 
 /**
@@ -95,6 +96,10 @@ public class Endpoint extends HttpServlet {
 					return new userPageHandler(dbManager);
 				case "com.kolia.handlers.coursePageHandler":
 					return new coursePageHandler(dbManager);
+				case "com.kolia.handlers.CsvHandler":
+					return new CsvHandler(dbManager);
+				case "com.kolia.handlers.DeleteHandler":
+					return new DeleteHandler(dbManager);
 				}
 
 			}

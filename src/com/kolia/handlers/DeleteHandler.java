@@ -5,37 +5,36 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.google.gson.Gson;
+import com.kolia.entities.Course;
 import com.kolia.entities.User;
 import com.kolia.hibernate.util.MyDBManager;
-import com.kolia.services.CourseService;
 import com.kolia.services.UserService;
 
-import jdk.nashorn.api.scripting.JSObject;
-import net.sf.json.JSONObject;
+public class DeleteHandler extends Handler{
 
-public class userPageHandler extends Handler{
 	UserService service;
-	CourseService courseService;
-	
-	public userPageHandler(MyDBManager dbManager) {
-		this.service = new UserService();
-		this.courseService = new CourseService();
-	}
-	
-	public ResponseHandler doPost(HttpServletRequest request) {
-		System.out.println("Getting the user details (i'm in userpageHandler)");
-		
-		String sid = request.getParameter("studentId");
-		String theId = getBody(request);
-		int id = Integer.parseInt(theId);
-		User user = service.getUserById(id);
-		JSONObject json = new JSONObject();
-		json.put("user", user);
-		
-		return new JSONResponse(json);
-	}
-	
+	MyDBManager dbManager;
 
+	public DeleteHandler(MyDBManager dbManager) {
+		this.service = new UserService();
+		this.dbManager = dbManager;
+	}
+
+	
+	@Override
+	public ResponseHandler doPost(HttpServletRequest request) {
+		
+		String body = getBody(request);
+//		userService.update(u);
+
+		User user = service.getUserByUserId(body);
+		service.delete(user);
+		
+		return new ResponseHandler();
+		
+	}
+	
 	private String getBody(HttpServletRequest req) {
 		  String body = "";
 		  if (req.getMethod().equals("POST") )
@@ -67,4 +66,3 @@ public class userPageHandler extends Handler{
 		}
 	
 }
-

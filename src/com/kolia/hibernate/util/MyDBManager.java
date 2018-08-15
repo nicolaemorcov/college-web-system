@@ -62,7 +62,7 @@ public class MyDBManager {
 	}
 	
 	public void persist(Object arg) {
-		session.persist(arg);;
+		session.persist(arg);
 	}
 	
 	public <E extends Object> TypedQuery<E> createQuery(String sql, Class<E> entityClass){

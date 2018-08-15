@@ -11,6 +11,13 @@ public class CourseService {
 
 	MyDBManager dbManager = new MyDBManager();
 	
+	public CourseService() {
+	}
+
+	public CourseService(MyDBManager dbManager) {
+		this.dbManager = dbManager;
+	}
+
 	public boolean registerCourse(Course course) {
 		
 		dbManager.startTransaction();

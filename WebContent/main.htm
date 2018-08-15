@@ -18,33 +18,46 @@
 						<tr>
 							<th>SNO</th>
 							<th id="userId">Userd Id</th>
-							<th>Name</th>
+							<th>First Name</th>
+							<th>Last Name</th>
 							<th>Email</th>
 							<th>Course</th>
-							<th>Actions</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="x in users | filter:searchText" id="{{x.id}}"
-							ng-model="selectedUser" ng-click="getUserPage(x)">
-							<td>{{x.id}}</td>
-							<td>{{x.userId}}</td>
-							
-							<td><a>{{x.firstName + " " + x.lastName}}</a></td>
-							<td>{{x.email}}</td>
-							<td>{{x.course.id}}</td>
-							<td>
-								<div class="buttons">
-									<button>Edit</button>
-									<button>Delete</button>
-								</div>
-							</td>
-							
+							ng-model="selectedUser" ng-include="getTemplate(x)">
 						</tr>
 
 					</tbody>
 				</table>
-				
+				<script type="text/ng-template" id="display">
+        			<td>{{x.id}}</td>
+					<td>{{x.userId}}</td>
+					<td><a>{{x.firstName}}</td>
+					<td><a>{{x.lastName}}</td>
+					<td>{{x.email}}</td>
+					<td>{{x.course.name}}</td>
+					<td>
+						<button ng-click="getUserPage(x)">View</button>
+						<button ng-click="editContact(x)">Edit</button>
+						<button ng-click="deleteContact(x)">Delete</button>
+					</td>
+    			</script>
+				<script type="text/ng-template" id="edit">
+					<td>{{x.id}}</td>
+					<td><input type="text" ng-model="selected.userId" /></td>
+					<td><input type="text" ng-model="selected.firstName" /></td>
+					<td><input type="text" ng-model="selected.lastName" /></td>
+					<td><input type="text" ng-model="selected.email" /></td>
+					<td>{{x.course.name}}</td>
+        			<td>
+           			<button ng-click="saveContact($index)">Save</button>
+            		<button ng-click="reset()">Cancel</button>
+        			</td>
+    			</script>
+
 
 			</div>
 			<br>
@@ -69,7 +82,7 @@
 				</tbody>
 			</table>
 			<a href="#!enroll">Enroll to a Course</a><br> <a
-				href="courseRegister.html">Register a Course</a>
+				href="courseRegister.html">Register a Course</a> <br>
 
 
 
@@ -78,74 +91,9 @@
 
 
 	</form>
-	
-	 </form>
-    
-	<form id="EditForm" class="editTables" style="float: left;">
-		<div>
-			<label>First Name:</label>
-			<div>
-				<input type="text" name="firstName" ng-model="selectedUser.firstName"/>
-			</div>
-		</div>
-		<div>
-			<label>Last Name:</label>
-			<div>
-				<input type="text" name="lastName" ng-model="selectedUser.lastName"/>
-			</div>
-		</div><div>
-			<label>userId:</label>
-			<div>
-				<input type="text" name="userId" ng-model="selectedUser.userId"/>
-			</div>
-		</div>
-		<div>
-			<label>Password:</label>
-			<div>
-				<input type="password" name="password" ng-model="selectedUser.password"/>
-			</div>
-		</div>
-		<div>
-			<label>Email:</label>
-			<div>
-				<input type="email" name="email" ng-model="selectedUser.email"/>
-			</div>
-		</div>
-		<div>
-			<div>
-				<input type="button" value="Edit" ng-click="edit()">
-			</div>
-		</div>
-		<div>
-			<div>
-				<input type="button" value="Delete" ng-click="delete()">
-			</div>
-		</div>
-	</form>
-	
-	<form id="EditCourseForm" class="editTables" style="float: right;">
-		<div>
-			<label>Course Name:</label>
-			<div>
-				<input type="text" name="courseName" ng-model="selectedCourse.name"/>
-			</div>
-		</div>
-		<div>
-			<label>Course Length:</label>
-			<div>
-				<input type="text" name="courseName" ng-model="selectedCourse.length"/>
-			</div>
-		</div>
-		<div>
-			<div>
-				<input type="button" value="Edit" ng-click="edit()">
-			</div>
-		</div>
-		<div>
-			<div>
-				<input type="button" value="Delete" ng-click="delete()">
-			</div>
-		</div>
+	<form method="post" action="upload" enctype="multipart/form-data">
+		Select file to upload: <input type="file" name="file" size="60" /><br />
+		<br /> <input type="submit" value="Upload" />
 	</form>
 
 </div>

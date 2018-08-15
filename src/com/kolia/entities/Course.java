@@ -38,6 +38,12 @@ public class Course {
 		this.length = length;
 		this.tuitionFees = fee;
 	}
+	public Course(int id, String name, int length, double fee) {
+		this.id = id;
+		this.name = name;
+		this.length = length;
+		this.tuitionFees = fee;
+	}
 
 	public double getCourseFee() {
 		return tuitionFees;
