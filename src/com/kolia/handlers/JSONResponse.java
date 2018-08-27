@@ -24,7 +24,12 @@ public class JSONResponse extends ResponseHandler{
 	@Override
 	public void writeToHttpServletResponse(HttpServletRequest request, 
 			HttpServletResponse response) {
-		super.writeToHttpServletResponse(request, response);
+		try {
+			super.writeToHttpServletResponse(request, response);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		JSONObject jsonResponse = new JSONObject();
 		jsonResponse.put("status", status);

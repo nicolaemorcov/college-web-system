@@ -42,7 +42,7 @@ public class EditHandler extends Handler{
 			userService.update(u);
 		}
 		
-		else if(body.contains("name")) {
+		else{
 			Course c = new Gson().fromJson(body,  Course.class);
 			courseService.update(c);
 		}

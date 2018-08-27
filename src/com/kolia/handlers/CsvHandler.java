@@ -57,6 +57,8 @@ public class CsvHandler extends Handler{
 			e.printStackTrace();
 		}
 		
+		ResponseHandler response = new ResponseHandler();
+		
 		
 		return new ResponseHandler();
 		

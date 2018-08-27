@@ -32,7 +32,8 @@ public class DeleteServlet extends HttpServlet {
 		UserService service = new UserService();
 		String sid = request.getParameter("id");
 		int id = Integer.parseInt(sid);
-		service.delete(id);
+		User user = service.getUserById(id);
+		service.delete(user);
 		response.sendRedirect("home.html");
 		
 	}

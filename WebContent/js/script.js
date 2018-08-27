@@ -210,6 +210,17 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
         $scope.courses = courses;
         myCourses.set(courses);
     })
+    
+    $scope.upload = function(){
+    	console.log("I'm uploading");
+    	$http({
+    		method: 'post',
+    		url: 'services/upload'
+    		
+    	}).success(function(response){
+    		
+    	})
+    }
 
 
    
