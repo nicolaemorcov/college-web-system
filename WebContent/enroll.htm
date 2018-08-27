@@ -1,0 +1,21 @@
+<h3>Enroll Form</h3>
+	<form action="enroll" method="post">
+		<table id="table1" align="center" cellpadding="10">
+			<tr>
+				<td>userId</td>
+				<td><input type="text" name="userId" maxlength="100"></td>
+			</tr>
+			<tr>
+				<td>Course</td>
+				<td><select name="course" style="width: 150px">
+					<option ng-repeat="c in Courses" >{{c.name}}</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" name="enroll" value="Submit">
+					<input type="reset" value="Reset">
+				</td>
+			</tr>
+		</table>
+	</form>

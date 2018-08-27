@@ -15,7 +15,6 @@ import com.kolia.services.CourseService;
 /**
  * Servlet implementation class CourseServlet
  */
-
 public class CourseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,8 +47,10 @@ public class CourseServlet extends HttpServlet {
 		
 		String courseName = request.getParameter("courseName");
 		String l = request.getParameter("courseLength");
+		String f = request.getParameter("tuitionFees");
+		double fee = Double.parseDouble(f);
 		int length = Integer.parseInt(l);
-		course = new Course(courseName, length);
+		course = new Course(courseName, length, fee);
 		service.registerCourse(course);
 		request.getRequestDispatcher("home.html").include(request, response);
 		out.println("<p> Record saved successfully! </p>");
@@ -57,6 +58,7 @@ public class CourseServlet extends HttpServlet {
 		out.println("Here you are again " + ck[0].getValue());
 		out.close();
 		
+		response.sendRedirect("index.html");
 	}
 
 }

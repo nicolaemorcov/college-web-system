@@ -18,7 +18,6 @@ import net.sf.json.JSONObject;
 /**
  * Servlet implementation class PopulateCourses
  */
-
 public class PopulateCourses extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -45,6 +45,7 @@ public class UserService {
 //		
 //	}
 	
+	
 	public boolean isUserExists(User user) {
 //		Put these two lines in a method called 'starTransaction()';
 		Session session = dbManager.getDBFactory().openSession();
@@ -108,10 +109,8 @@ public class UserService {
 		
 	}
 	
-	public void delete(int id) {
+	public void delete(User user) {
 		dbManager.startTransaction();
-		String sql = "FROM User WHERE id='" + id + "'";
-		User user = (User) dbManager.getSingleResult(sql);
 		dbManager.delete(user);
 		dbManager.closeTransaction();
 	}

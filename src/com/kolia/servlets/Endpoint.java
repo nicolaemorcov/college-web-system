@@ -1,5 +1,6 @@
 package com.kolia.servlets;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -15,15 +16,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kolia.handlers.DeleteHandler;
+import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;
 import com.kolia.handlers.HomeHandler;
 import com.kolia.handlers.ResponseHandler;
+import com.kolia.handlers.UploadHandler;
+import com.kolia.handlers.coursePageHandler;
+import com.kolia.handlers.userPageHandler;
 import com.kolia.hibernate.util.MyDBManager;
 
 /**
  * Servlet implementation class Endpoint
  */
-
 public class Endpoint extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -54,7 +59,12 @@ public class Endpoint extends HttpServlet {
 		}
 		else {
 			ResponseHandler rh = handler.doGet(request);
-			rh.writeToHttpServletResponse(request, response);
+			try {
+				rh.writeToHttpServletResponse(request, response);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
@@ -86,6 +96,16 @@ public class Endpoint extends HttpServlet {
 				switch (handlerClass.getName()) {
 				case "com.kolia.handlers.HomeHandler":
 					return new HomeHandler(dbManager);
+				case "com.kolia.handlers.EditHandler":
+					return new EditHandler(dbManager);
+				case "com.kolia.handlers.userPageHandler":
+					return new userPageHandler(dbManager);
+				case "com.kolia.handlers.coursePageHandler":
+					return new coursePageHandler(dbManager);
+				case "com.kolia.handlers.UploadHandler":
+					return new UploadHandler(dbManager);
+				case "com.kolia.handlers.DeleteHandler":
+					return new DeleteHandler(dbManager);
 				}
 
 			}

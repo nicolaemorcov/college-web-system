@@ -15,7 +15,6 @@ import com.kolia.services.UserService;
 /**
  * Servlet implementation class LoginServlet
  */
-
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -51,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 		user = service.getUserByUserId(userId);
 		if(result == true) {
 			request.getSession().setAttribute("userId", userId);
-			request.getRequestDispatcher("home.html").include(request, response);
+			request.getRequestDispatcher("index.html").include(request, response);
 			out.println("Hi " + userId);
 			Cookie c = new Cookie("userId", userId);
 			response.addCookie(c);

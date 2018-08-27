@@ -1,0 +1,112 @@
+<div ng-controller="mainController">
+	<form>
+		<div id="container" align="center">
+			<h1>Result Page</h1>
+			<b>This is simple result page</b><br /> <a href="logout.html">Logout</a>
+
+			<div>
+				<p>Welcome</p>
+			</div>
+
+			<button ng-click="test()">Show/Hide</button>
+
+			<div ng-show="showEdit">
+				<label ng-show="showEdit">Search: <input
+					ng-model="searchText"></label>
+				<table id="table">
+					<thead>
+						<tr>
+							<th>SNO</th>
+							<th id="userId">Userd Id</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Course</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="x in users | filter:searchText" id="{{x.id}}"
+							ng-model="selectedUser" ng-include="getTemplate(x)">
+						</tr>
+
+					</tbody>
+				</table>
+				<script type="text/ng-template" id="display">
+        			<td>{{x.id}}</td>
+					<td>{{x.userId}}</td>
+					<td><a>{{x.firstName}}</td>
+					<td><a>{{x.lastName}}</td>
+					<td>{{x.email}}</td>
+					<td>{{x.course.name}}</td>
+					<td>
+						<button ng-click="getUserPage(x)">View</button>
+						<button ng-click="editContact(x)">Edit</button>
+						<button ng-click="deleteContact(x)">Delete</button>
+					</td>
+    			</script>
+				<script type="text/ng-template" id="edit">
+					<td>{{x.id}}</td>
+					<td><input type="text" ng-model="selected.userId" /></td>
+					<td><input type="text" ng-model="selected.firstName" /></td>
+					<td><input type="text" ng-model="selected.lastName" /></td>
+					<td><input type="text" ng-model="selected.email" /></td>
+					<td>{{x.course.name}}</td>
+        			<td>
+           			<button ng-click="saveContact($index)">Save</button>
+            		<button ng-click="reset()">Cancel</button>
+        			</td>
+    			</script>
+
+
+			</div>
+			<br>
+			<table id="table1">
+				<thead>
+
+					<tr>
+						<th>course id</th>
+						<th>Course Name</th>
+						<th>Course Length</th>
+						<th>Tuition Fee</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in courses" id="{{x.id}}" ng-model="selectedItem"
+						ng-click="getCoursePage(x)">
+						<td class="courseIdLength">{{x.id}}</td>
+						<td>{{x.name}}</td>
+						<td>{{x.length}}</td>
+						<td><span>&#163;</span> {{x.courseFee}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="#!enroll">Enroll to a Course</a><br> <a
+				href="courseRegister.html">Register a Course</a> <br>
+
+
+
+		</div>
+
+
+
+	</form>
+	<div>
+	<div id="right">
+	<h3>Upload Courses</h3>
+	<form ng-submit="upload()" enctype="multipart/form-data">
+		Select file to upload: <input id="fileeee" type="file" name="file" size="60" /><br />
+		<br /> <input type="submit" value="Upload" />
+	</form>
+	</div>
+	
+	<div>
+		<h3>Upload Students</h3>
+		<form method="post" action="services/upload"
+			enctype="multipart/form-data">
+			Select file to upload: <input id="studentsFile" type="file" name="studentsFile"
+				size="60" /><br /> <br /> <input type="submit" value="Upload" />
+		</form>
+	</div>
+	</div>
+</div>

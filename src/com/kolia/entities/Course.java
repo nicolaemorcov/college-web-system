@@ -22,6 +22,8 @@ public class Course {
 	private String name;
 	@Column(name="course_length")
 	private int length;
+	@Column(name="course_fee")
+	private double tuitionFees;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="course", cascade = CascadeType.ALL)
 	private List<User> users;
 	
@@ -31,9 +33,24 @@ public class Course {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Course(String name, int length) {
+	public Course(String name, int length, double fee) {
 		this.name = name;
 		this.length = length;
+		this.tuitionFees = fee;
+	}
+	public Course(int id, String name, int length, double fee) {
+		this.id = id;
+		this.name = name;
+		this.length = length;
+		this.tuitionFees = fee;
+	}
+
+	public double getCourseFee() {
+		return tuitionFees;
+	}
+
+	public void setCourseFee(double courseFee) {
+		this.tuitionFees = courseFee;
 	}
 
 	public int getId() {

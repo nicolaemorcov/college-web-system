@@ -17,7 +17,6 @@ import com.kolia.services.UserService;
 /**
  * Servlet implementation class EnrollServlet
  */
-
 public class EnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -55,8 +54,7 @@ public class EnrollServlet extends HttpServlet {
 		course = cService.getCourseByName(courseName);
 		user.setCourse(course);
 		service.update(user);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("home.html");
-		dispatcher.forward(request, response);
+		response.sendRedirect("index.html");
 //		out.close();
 		
 	}

@@ -1,5 +1,7 @@
 package com.kolia.handlers;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,9 +24,12 @@ public class ResponseHandler {
 		return this;
 	}
 	
-	public void writeToHttpServletResponse(HttpServletRequest request, HttpServletResponse response) {
+	public void writeToHttpServletResponse(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.setStatus(statusCode);
 		response.setContentType(contentType);
+//		if(statusCode == 301) {
+//			response.sendRedirect("services/users");
+//		}
 	}
 	
 	

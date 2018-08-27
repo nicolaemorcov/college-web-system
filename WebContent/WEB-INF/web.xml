@@ -10,20 +10,20 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-  	<servlet-name>ServiceEndPoint</servlet-name>
-  	<servlet-class>com.kolia.servlets.ServiceEndPoint</servlet-class>
+    <servlet-name>ServiceEndPoint</servlet-name>
+    <servlet-class>com.kolia.servlets.ServiceEndPoint</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>ServiceEndPoint</servlet-name>
-  	<url-pattern>/services/*</url-pattern>
+    <servlet-name>ServiceEndPoint</servlet-name>
+    <url-pattern>/services/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.kolia.servlets.LoginServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>Controller</servlet-name>
-  	<servlet-class>com.kolia.servlets.Controller</servlet-class>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>com.kolia.servlets.Controller</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
@@ -49,6 +49,22 @@
     <servlet-name>EditServlet2</servlet-name>
     <servlet-class>com.kolia.servlets.EditServlet2</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>EnrollServlet</servlet-name>
+    <servlet-class>com.kolia.servlets.EnrollServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EnrollServlet</servlet-name>
+    <url-pattern>/enroll</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>com.kolia.servlets.UploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>EditServlet</servlet-name>
     <url-pattern>/edit</url-pattern>
@@ -78,7 +94,14 @@
     <url-pattern>/courseServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>Controller</servlet-name>
-  	<url-pattern>/controller</url-pattern>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/controller</url-pattern>
   </servlet-mapping>
+  <context-param>
+    <description>Location to store uploaded file</description>
+    <param-name>tempFile.csv</param-name>
+    <param-value>
+    	E:\Tutorials
+    </param-value>
+  </context-param>
 </web-app>

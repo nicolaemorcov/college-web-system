@@ -14,7 +14,6 @@ import com.kolia.services.UserService;
 /**
  * Servlet implementation class EditServlet
  */
-
 public class EditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

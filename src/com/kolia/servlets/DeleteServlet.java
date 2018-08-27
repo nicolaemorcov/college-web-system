@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kolia.entities.User;
 import com.kolia.services.UserService;
 
 /**
  * Servlet implementation class DeleteServlet
  */
-
 public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,7 +32,8 @@ public class DeleteServlet extends HttpServlet {
 		UserService service = new UserService();
 		String sid = request.getParameter("id");
 		int id = Integer.parseInt(sid);
-		service.delete(id);
+		User user = service.getUserById(id);
+		service.delete(user);
 		response.sendRedirect("home.html");
 		
 	}

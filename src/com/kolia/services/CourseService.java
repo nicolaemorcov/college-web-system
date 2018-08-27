@@ -11,6 +11,13 @@ public class CourseService {
 
 	MyDBManager dbManager = new MyDBManager();
 	
+	public CourseService() {
+	}
+
+	public CourseService(MyDBManager dbManager) {
+		this.dbManager = dbManager;
+	}
+
 	public boolean registerCourse(Course course) {
 		
 		dbManager.startTransaction();
@@ -57,6 +64,12 @@ public class CourseService {
 		course = (Course) dbManager.getSingleResult(sql);	
 		dbManager.closeTransaction();
 		return course;
+	}
+	
+	public void update(Course course) {
+		dbManager.startTransaction();
+		dbManager.saveOrUpdate(course);
+		dbManager.closeTransaction();
 	}
 	
 }
