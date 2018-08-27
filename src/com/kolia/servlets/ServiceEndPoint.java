@@ -1,28 +1,22 @@
 package com.kolia.servlets;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kolia.handlers.Handler;
-import com.kolia.handlers.ResponseHandler;
 import com.kolia.handlers.HomeHandler;
+import com.kolia.handlers.ResponseHandler;
 
 /**
  * Servlet implementation class ServiceEndPoint
  */
-@WebServlet("/ServiceEndPoint")
+
 public class ServiceEndPoint extends Endpoint {
 	private static final long serialVersionUID = 1L;
        
