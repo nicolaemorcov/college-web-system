@@ -11,6 +11,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kolia.authentication.LoginHandler;
 import com.kolia.handlers.DeleteHandler;
 import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;

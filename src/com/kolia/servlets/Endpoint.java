@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kolia.authentication.LoginHandler;
 import com.kolia.handlers.DeleteHandler;
 import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;
@@ -106,6 +107,8 @@ public class Endpoint extends HttpServlet {
 					return new UploadHandler(dbManager);
 				case "com.kolia.handlers.DeleteHandler":
 					return new DeleteHandler(dbManager);
+				case "com.kolia.authentication.LoginHandler":
+					return new LoginHandler(dbManager);
 				}
 
 			}

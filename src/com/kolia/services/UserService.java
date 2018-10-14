@@ -1,14 +1,15 @@
 package com.kolia.services;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 
-import com.kolia.entities.Course;
 import com.kolia.entities.User;
 import com.kolia.hibernate.util.MyDBManager;
 
-public class UserService {
+public class UserService implements Runnable{
 	MyDBManager dbManager = new MyDBManager();
 	
 	
@@ -18,6 +19,10 @@ public class UserService {
 
 	public UserService(MyDBManager dbManager) {
 		this.dbManager = dbManager;
+	}
+	
+	public void run() {
+		System.out.println("Kolia");
 	}
 
 	public boolean registerUser(User user) {
@@ -39,11 +44,31 @@ public class UserService {
 		
 	}
 	
-//	public void enroll(User user) {
-//		dbManager.startTransaction();
-//		
-//		
-//	}
+	public Map<Integer, User> getMappedUsers(List<User> uaa){
+		HashMap<Integer, User> users = new HashMap<>();
+		for(User u: uaa) {
+			Integer id = u.getId();
+			User user = u;
+			users.put(id, user);
+		}
+		
+		return users;
+		
+	}
+	
+	
+	public List<User> getAllUsers(){
+		dbManager.startTransaction();
+		List<User> users = dbManager.getResultList("FROM User");
+//		try {
+//		session.getTransaction().commit();
+//		}finally {
+//		session.close();
+//		}
+		dbManager.closeTransaction();
+		return users;
+	}
+	
 	
 	
 	public boolean isUserExists(User user) {
@@ -90,17 +115,7 @@ public class UserService {
 		return user;
  	}
 	
-	public List<User> getAllUsers(){
-		dbManager.startTransaction();
-		List<User> users = dbManager.getResultList("FROM User");
-//		try {
-//		session.getTransaction().commit();
-//		}finally {
-//		session.close();
-//		}
-		dbManager.closeTransaction();
-		return users;
-	}
+
 	
 	public void update(User user) {
 		dbManager.startTransaction();
