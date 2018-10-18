@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kolia.authentication.LoginHandler;
+import com.kolia.authentication.LogoutHandler;
 import com.kolia.handlers.DeleteHandler;
 import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;
@@ -109,6 +110,8 @@ public class Endpoint extends HttpServlet {
 					return new DeleteHandler(dbManager);
 				case "com.kolia.authentication.LoginHandler":
 					return new LoginHandler(dbManager);
+				case "com.kolia.authentication.LogoutHandler":
+					return new LogoutHandler(dbManager);
 				}
 
 			}

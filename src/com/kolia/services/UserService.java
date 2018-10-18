@@ -1,9 +1,14 @@
 package com.kolia.services;
 
+import java.sql.SQLDataException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.RollbackException;
+
+import org.hibernate.HibernateError;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import com.kolia.entities.User;
@@ -35,8 +40,11 @@ public class UserService implements Runnable{
 		}
 		
 //		session.persist(user);
+		try {
 		dbManager.persist(user);
-		
+		}catch (HibernateError | RollbackException | org.hibernate.exception.DataException r) {
+			System.out.println("Some details are wrong: Please enter the right details");
+		}
 //		session.getTransaction().commit();
 //		session.close();
 		dbManager.closeTransaction();

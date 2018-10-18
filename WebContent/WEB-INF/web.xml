@@ -74,7 +74,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Authentication</servlet-name>
-    <url-pattern>/login</url-pattern>
+    <url-pattern>/auth/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>

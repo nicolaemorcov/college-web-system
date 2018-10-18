@@ -3,7 +3,8 @@ package com.kolia.authentication;
 import java.io.IOException;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;	
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 
@@ -44,6 +45,8 @@ public class LoginHandler extends Handler {
 			boolean authSucceeded = service.authenticateUser(userId, password);
 //			user = service.getUserByUserId(userId);
 			Cookie c = new Cookie("userId", userId);
+			HttpSession session = request.getSession();
+			session.setAttribute("user", userId);
 			if (!authSucceeded) {
 				rh.setStatusCode(302);
 				rh.setContentType("text/plain");

@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ["ngRoute"]);
+var app = angular.module("myApp", ["ngRoute", "ngCookies"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
@@ -10,6 +10,10 @@ app.config(function($routeProvider) {
     .when("/login", {
         templateUrl: "login.html",
         controller: "loginController"
+    })
+    .when("/logout", {
+    	templateUrl: "logout.html",
+    	controller: "logoutController"
     })
     .when("/paris", {
         templateUrl: "courseReg.htm"

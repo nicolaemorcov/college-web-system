@@ -67,6 +67,7 @@ public class Authentication extends Endpoint {
 	protected void initializeMapping() {
 		log.info("Adding the handlers...");
 		addHandler(LoginHandler.class, "(?i)^/auth/login");
+		addHandler(LogoutHandler.class, "(?i)^/auth/logout");
 	}
 
 

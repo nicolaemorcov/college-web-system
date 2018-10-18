@@ -1,8 +1,26 @@
-app.controller("mainController", function($scope, $http, $location, $log, myFactory, myCourses) {
+app.controller("mainController", function($scope, $http, $location, $log, myFactory, myCourses, $cookies) {
     $scope.loggedOutMessage = "Welcome please Log In";
 
     $scope.showEdit = true;
+    var userId = $cookies.get("userId");
+    
+    $scope.logout = function() {
 
+		$http({
+			method: 'get',
+			url: '/auth/logout',
+			contentType: 'application/json',
+			
+		})
+		.then(function(response){
+			var cook = $cookies.get("userId");
+			$cookies.remove("userId");
+			console.log(cook);
+			$location.path("/logout")
+		})
+		
+	}
+    
     $scope.test = function() {
         console.log("Button clicked, table should appear.")
         if ($scope.showEdit == false) {
@@ -11,8 +29,9 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
             $scope.showEdit = false;
         }
     }
-    
-//    $location.path("/login") 
+    if(userId == null){
+    	$location.path("/login")
+    }
     
     $scope.selected = {};
     
