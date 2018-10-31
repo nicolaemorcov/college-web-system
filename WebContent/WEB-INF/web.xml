@@ -26,7 +26,7 @@
   </servlet>
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>com.kolia.servlets.RegisterServlet</servlet-class>
+    <servlet-class>com.kolia.registration.RegisterServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>PopulateData</servlet-name>
@@ -78,7 +78,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/register</url-pattern>
+    <url-pattern>/reg/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>PopulateData</servlet-name>

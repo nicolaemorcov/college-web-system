@@ -31,22 +31,17 @@ public class UserService implements Runnable{
 	}
 
 	public boolean registerUser(User user) {
-//		Session session = dbManager.getDBFactory().openSession();
-//		session.beginTransaction();
 		dbManager.startTransaction();
 		
 		if(isUserExists(user)) {
 			return false;
 		}
 		
-//		session.persist(user);
 		try {
 		dbManager.persist(user);
 		}catch (HibernateError | RollbackException | org.hibernate.exception.DataException r) {
 			System.out.println("Some details are wrong: Please enter the right details");
 		}
-//		session.getTransaction().commit();
-//		session.close();
 		dbManager.closeTransaction();
 		return true;
 		
@@ -78,6 +73,16 @@ public class UserService implements Runnable{
 	}
 	
 	
+	public boolean hasUserRights(User u) {
+		String role = u.getRole();
+		boolean hasRights = false;
+		if(role.equalsIgnoreCase("LECTURER") || role.equalsIgnoreCase("ADMIN")) {
+			hasRights = true;
+		}
+		return hasRights;
+	}
+	
+	
 	
 	public boolean isUserExists(User user) {
 //		Put these two lines in a method called 'starTransaction()';
@@ -87,8 +92,6 @@ public class UserService implements Runnable{
 		
 		boolean result = false;
 		String sql = ("FROM User WHERE userId='" + user.getUserId() + "'");
-		// add session.createQuery() in a method called getSingleResult(String sql)
-//		User u = (User) session.createQuery(sql).uniqueResult();
 		User u = (User) session.createQuery(sql).uniqueResult();
 		if (u != null) {
 			result = true;
@@ -102,8 +105,6 @@ public class UserService implements Runnable{
 	}
 	
 	public User getUserByUserId(String userId) {
-//		Session session = dbManager.getDBFactory().openSession();
-//		session.beginTransaction();
 		dbManager.startTransaction();
 		
 		User user;

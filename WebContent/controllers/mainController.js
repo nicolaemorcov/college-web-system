@@ -3,7 +3,8 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
 
     $scope.showEdit = true;
     var userId = $cookies.get("userId");
-    
+   
+    // logout
     $scope.logout = function() {
 
 		$http({
@@ -21,6 +22,33 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
 		
 	}
     
+    // ajax get all data from db
+    $http({
+    	method: 'get',
+    	url: 'services/users',
+    	contentType: 'application/json',
+    	data: userId
+    })
+    .then(function(response){
+    	var courses = response.data.data.courses;
+    	var users = response.data.data.users;
+        $scope.users = users;
+        $scope.courses = courses;
+        myCourses.set(courses);
+    })
+    
+    
+////  get all data from db
+//    $http.get("services/users").then(function(response) {
+//    	var courses = response.data.data.courses;
+//    	var users = response.data.data.users;
+//        $scope.users = users;
+//        $scope.courses = courses;
+//        myCourses.set(courses);
+//    })
+    
+    
+    
     $scope.test = function() {
         console.log("Button clicked, table should appear.")
         if ($scope.showEdit == false) {
@@ -29,6 +57,8 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
             $scope.showEdit = false;
         }
     }
+    
+    // check if logged in
     if(userId == null){
     	$location.path("/login")
     }
@@ -45,6 +75,7 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
         $scope.selected = angular.copy(x);
     };
 
+    // save edited user
     $scope.saveContact = function (index) {
         console.log("Saving contact");
         var itemToEdit = $scope.users[index] = angular.copy($scope.selected);
@@ -60,6 +91,7 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
     	$scope.reset();
     };
     
+    //delete user
     $scope.deleteContact = function (index) {
         console.log("Saving contact");
         var userId = index.userId;
@@ -79,15 +111,18 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
         $scope.selected = {};
     };
     
-    
+    // goes to user Page
     $scope.getUserPage = function(x){
 //    	$scope.selectedUser = myFactory.get();
     	$location.path('userDetail').search({email: x.email});
     	myFactory.set(x);
     }
+    
     $scope.editUser = function(){
     	
     }
+    
+    //goes to course page
     $scope.getCoursePage = function(x){
     	$location.path('courseDetail').search({course: x.id});
     	$scope.selectedCourse = x;
@@ -109,14 +144,6 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
     	$scope.selectedCourse = x;
     }
 
-//    get all data from db
-    $http.get("services/users").then(function(response) {
-    	var courses = response.data.data.courses;
-    	var users = response.data.data.users;
-        $scope.users = users;
-        $scope.courses = courses;
-        myCourses.set(courses);
-    })
     
     $scope.upload = function(){
     	console.log("I'm uploading");

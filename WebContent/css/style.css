@@ -1,64 +1,138 @@
-#right{
-	width: 50%;
-	float: right;
-}
-#left{
-	width: 50%;
-	float: left;
-}
-ul {
-    list-style-type: none;
+html,
+body {
     margin: 0;
     padding: 0;
+    width: 100%;
+}
+
+body {
+    background-color: #F2EFE4;
+    width: 100%;
+    height: 100vh;
+    font-family: sans-serif;
+}
+
+.navigation {
+    background: linear-gradient(0deg, #352D39, #4C3327);
     overflow: hidden;
-    background-color: #333;
+    animation: BackgroundGradient 30s ease infinite;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-li {
+.logo {
+    letter-spacing: 1px;
+    color: azure;
     float: left;
+    font-size: 22px;
+    line-height: 80px;
+    padding: 0 6em;
 }
 
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+.menu {
+    float: right;
+    line-height: 60px;
+    margin: 0 6em;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu ul li {
+    display: inline-block;
+}
+
+.menu ul li a {
     text-decoration: none;
+    color: azure;
+    font-size: 16px;
+    font-weight: lighter;
+    padding: 10px;
 }
 
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-    background-color: #111;
+ul li:nth-child(6) a {
+    color: #BD3632;
+    border: 1px solid #BD3632;
+    padding: 10px 20px;
+    border-radius: 4px;
 }
 
-#table1{
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 60%;
+.header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
-.courseIdLength{
-	width : 5%;
+.header h1 {
+    color: #4C3327;
+    font-size: 46px;
+    font-weight: 400;
+    margin-bottom: 8px
+}
+
+.header p {
+    color: #CB8C1D;
+    font-size: 24px;
+    font-weight: lighter
+}
+
+.header button {
+    color: #352D39;
+    background: #BD3632;
+    padding: 12px 32px;
+    font-size: 14px;
+    border: none;
+    margin-top: 40px;
+}
+table{
+	padding-top: 100px;
+}
+.myForm{
+	padding-top: 80px;
+}
+.myTable{
+	width: 80%;
+	padding-top: 100px;
+}
+
+.myTable, th, td{
+	border: 1px solid black;
+	border-collapse: collapse;
+	background-color: azure;
+}
+th,td{
+	padding: 5px;
 	text-align: center;
 }
-
-table{
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 85%;
+th{
+	background-color: #4C3327;
+	color: azure;
 }
-td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
+tr:nth-child(even){
+	background-color: #e8e8e8;
 }
-table tr:nth-child(even){background-color: #f2f2f2;}
 
-table tr:hover {background-color: #ddd;}
-
-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #778899;
-    color: white;
+h1 {
+    color: #CB8C1D;
 }
+
+h2 {
+    color: #4C3327;
+}
+
+h3 {
+    color: #BD3632;
+}
+
+h4 {}
+
+h5 {}

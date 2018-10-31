@@ -27,6 +27,7 @@ import com.kolia.handlers.UploadHandler;
 import com.kolia.handlers.coursePageHandler;
 import com.kolia.handlers.userPageHandler;
 import com.kolia.hibernate.util.MyDBManager;
+import com.kolia.registration.RegistrationHandler;
 
 /**
  * Servlet implementation class Endpoint
@@ -112,6 +113,8 @@ public class Endpoint extends HttpServlet {
 					return new LoginHandler(dbManager);
 				case "com.kolia.authentication.LogoutHandler":
 					return new LogoutHandler(dbManager);
+				case "com.kolia.registration.RegistrationHandler":
+					return new RegistrationHandler(dbManager);
 				}
 
 			}

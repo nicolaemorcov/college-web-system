@@ -4,6 +4,7 @@ app.controller("loginController", function($scope, $http, $window, $location, $c
         password = $scope.password;
         console.log($scope.user);
 
+        
         $http({
             method: 'post',
             url: '/auth/login',
@@ -17,4 +18,9 @@ app.controller("loginController", function($scope, $http, $window, $location, $c
             }
         })
     }
+    
+    $scope.getRegister = function(){
+    	$location.path("/register")
+    }
+    
 })

@@ -22,7 +22,9 @@ public class User {
 	private String email;
 	private String userId;
 	private String password;
-	
+	private String role;
+
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="course_id")
 	private Course course;
@@ -31,26 +33,29 @@ public class User {
 	}
 
 	
-	//This is for registering user to a course
-//	public User(String firstName, String lastName, String email, Course course) {
-//		this.firstName = firstName;
-//		this.lastName = lastName;
-//		this.email = email;
-//		this.course = course;
-//	}
-	
 	
 	// This constructor is for registering
-	public User(String firstName, String lastName, String email, String userId, String password) {
+	public User(String firstName, String lastName, String email, String userId, String password, String role) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.userId = userId;
 		this.password = password;
+		this.role = role.toString();
 	}
 
 
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public int getId() {
 		return id;

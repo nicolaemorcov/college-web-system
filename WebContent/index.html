@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-route.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
@@ -14,23 +14,34 @@
 </head>
 
 <body ng-app="myApp">
-	<ul>
-    	<li><a href="#/!">Main</a></li>
-		
-    	<li><a href="#!enroll">Enroll</a></li>
-    	<li><a href="#!courseReg">Register Course</a></li>
-	</ul>
-    <div ng-view></div>
+    <div class="wrapper">
+        <div class="navigation">
+            <div class="logo">LOGO</div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#!/">Home</a></li>
+					<li><a href="#!main">Main</a></li>
+                    <li><a href="#!enroll">Enroll</a></li>
+                    <li><a href="#!courseReg">Register Course</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Make an enquiry</a></li>
+                    <li><a href="#">Register</a></li>
+                </ul>
+            </div>
+        </div>
+        <div ng-view></div>
 
-    <script src="js/script.js"></script>
-    <script src="controllers/mainController.js"></script>
-    <script src="controllers/userController.js"></script>
-    <script src="controllers/courseController.js"></script>
-    <script src="controllers/enrollController.js"></script>
-    <script src="controllers/login.js"></script>
-    <script src="controllers/logoutController.js"></script>
-    
+        <script src="js/script.js"></script>
+        <script src="controllers/mainController.js"></script>
+        <script src="controllers/userController.js"></script>
+        <script src="controllers/courseController.js"></script>
+        <script src="controllers/enrollController.js"></script>
+        <script src="controllers/login.js"></script>
+        <script src="controllers/logoutController.js"></script>
+        <script src="controllers/registerController.js"></script>
+        <script src="controllers/entryController.js"></script>
 
+    </div>
 </body>
 
 </html>

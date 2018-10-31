@@ -2,7 +2,15 @@ var app = angular.module("myApp", ["ngRoute", "ngCookies"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
+        templateUrl: "entry.html",
+        controller: "entryController"
+    })
+    .when("/main", {
         templateUrl: "main.htm"
+    })
+    .when("/register", {
+    	templateUrl: "register.html",
+    	controller: "registerController"
     })
     .when("/enroll", {
         templateUrl: "enroll.htm"
@@ -29,6 +37,9 @@ app.config(function($routeProvider) {
     .when("/enroll",{
     	templateUrl: "enroll.htm",
     	controller: "enrollController"
+    })
+    .when("/success", {
+    	templateUrl: "success.html"
     });
     
 });
@@ -50,6 +61,7 @@ app.factory("myFactory", function(){
 	}
 })
 
+
 app.factory("myCourses", function(){
 	var courseList = {};
 	
@@ -65,3 +77,5 @@ app.factory("myCourses", function(){
 	}
 	
 })
+
+
