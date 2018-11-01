@@ -14,15 +14,15 @@
 </head>
 
 <body ng-app="myApp">
-    <div class="wrapper">
+    <div ng-controller="indexController" class="wrapper">
         <div class="navigation">
             <div class="logo">LOGO</div>
             <div class="menu">
                 <ul>
                     <li><a href="#!/">Home</a></li>
-					<li><a href="#!main">Main</a></li>
+					<li ng-show="showTutorAdmin"><a href="#!main">Main</a></li>
                     <li><a href="#!enroll">Enroll</a></li>
-                    <li><a href="#!courseReg">Register Course</a></li>
+                    <li ng-show="showTutorAdmin"><a href="#!courseReg">Register Course</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Make an enquiry</a></li>
                     <li><a href="#">Register</a></li>

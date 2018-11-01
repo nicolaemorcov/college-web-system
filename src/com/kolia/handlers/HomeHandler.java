@@ -1,9 +1,12 @@
 package com.kolia.handlers;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.kolia.entities.Course;
 import com.kolia.entities.User;
@@ -25,43 +28,63 @@ public class HomeHandler extends Handler{
 	MyDBManager dbManager = new MyDBManager();
 	
 	@Override
-	public ResponseHandler doGet(HttpServletRequest request) {
+	public ResponseHandler doPost(HttpServletRequest request) {
 		System.out.println("Getting all bookings (I'm in userHandler)");
-		List<User> users = service.getAllUsers();
-		List<Course> courses = courseService.getAllCourses();
-		System.out.println("I'm in UserHandler, getting all users for You");
-		JSONObject json = new JSONObject();
-		json.put("users", users);
-		json.put("courses", courses);
-//		Thread t1 = new Thread(new UserService());
-//		t1.start();
-//		try {
-//			System.out.println("Anew thread started");
-//			t1.sleep(10000);
-//			System.out.println("the thread woke aup from sleep after 10 s");
-//		} catch (InterruptedException e) {
-//			System.out.println("Thread interupted");
-//			e.printStackTrace();
-//		}
-//		Thread t2 = new Thread(new UserService());
-//		t2.start();
-//		try {
-//			System.out.println("T2 A new thread started");
-//			t2.sleep(10000);
-//			System.out.println("T2 the thread woke aup from sleep after 10 s");
-//		} catch (InterruptedException e) {
-//			System.out.println("T2 Thread interupted");
-//			e.printStackTrace();
-//		}
-		service.getMappedUsers(users);
-		
-		return new JSONResponse(json);
-		
-	}
+//		String userId = getBody(request).toString().replaceAll("\"", "");
+		JSONObject json = new JSONObject();;
+//		User u = service.getUserByUserId(userId);
+//		String role = u.getRole();
+		ResponseHandler rh;
+//		if(role.equalsIgnoreCase("LECTURER") || role.equalsIgnoreCase("ADMIN")) {
+			List<User> users = service.getAllUsers();
+			List<Course> courses = courseService.getAllCourses();
+			System.out.println("I'm in UserHandler, getting all users for You");
+			json.put("users", users);
+			json.put("courses", courses);
 	
-//	@Override
-//	public ResponseHandler doPost(HttpServletRequest request) {
-//		
+			service.getMappedUsers(users);
+			return new JSONResponse(json);
+		}
+//		else {
+//			rh = new ResponseHandler();
+//			rh.setStatusCode(302);
+//			rh.setContentType("text/plain");
+//			
+//		}
+//		return rh;
+		
 //	}
 	
+	private String getBody(HttpServletRequest req) {
+		  String body = "";
+		  if (req.getMethod().equals("POST") )
+		  {
+		    StringBuilder sb = new StringBuilder();
+		    BufferedReader bufferedReader = null;
+
+		    try {
+		      bufferedReader =  req.getReader();
+		      char[] charBuffer = new char[128];
+		      int bytesRead;
+		      while ((bytesRead = bufferedReader.read(charBuffer)) != -1) {
+		        sb.append(charBuffer, 0, bytesRead);
+		      }
+		    } catch (IOException ex) {
+		      // swallow silently -- can't get body, won't
+		    } finally {
+		      if (bufferedReader != null) {
+		        try {
+		          bufferedReader.close();
+		        } catch (IOException ex) {
+		          // swallow silently -- can't get body, won't
+		        }
+		      }
+		    }
+		    body = sb.toString();
+		  }
+		  return body;
+		}
+	
+	
 }
+

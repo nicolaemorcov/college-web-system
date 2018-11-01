@@ -24,7 +24,7 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
     
     // ajax get all data from db
     $http({
-    	method: 'get',
+    	method: 'post',
     	url: 'services/users',
     	contentType: 'application/json',
     	data: userId
@@ -32,6 +32,7 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
     .then(function(response){
     	var courses = response.data.data.courses;
     	var users = response.data.data.users;
+    	console.log(response.data.status);
         $scope.users = users;
         $scope.courses = courses;
         myCourses.set(courses);

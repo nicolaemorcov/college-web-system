@@ -43,6 +43,9 @@ app.config(function($routeProvider) {
     });
     
 });
+app.controller("indexController", function($scope){
+	$scope.showTutorAdmin = false;
+})
 
 
 app.factory("myFactory", function(){
