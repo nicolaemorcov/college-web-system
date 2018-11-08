@@ -43,17 +43,14 @@ public class HomeHandler extends Handler{
 			System.out.println("I'm in UserHandler, getting all users for You");
 			json.put("users", users);
 			json.put("courses", courses);
-	
-			service.getMappedUsers(users);
+
 			return new JSONResponse(json);
 		}
 		else {
-			rh = new ResponseHandler();
-			rh.setStatusCode(302);
-			rh.setContentType("text/plain");
+			json.put("user", u);
 			
 		}
-		return rh;
+		return new JSONResponse(json);
 		
 	}
 	
