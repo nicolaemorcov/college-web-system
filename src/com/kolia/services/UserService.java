@@ -115,6 +115,11 @@ public class UserService implements Runnable{
 		return user;
 		}
 	
+	public String getUserRole(String userId) {
+		User user = getUserByUserId(userId);
+		return user.getRole();
+	}
+	
 	public User getUserById(int id) {
 		dbManager.startTransaction();
 		User user;

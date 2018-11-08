@@ -36,20 +36,14 @@ public class HomeHandler extends Handler{
 		JSONObject json = new JSONObject();;
 		User u = service.getUserByUserId(userId);
 		String role = u.getRole();
-		ResponseHandler rh;
 		if(role.equalsIgnoreCase("LECTURER") || role.equalsIgnoreCase("ADMIN")) {
 			users = service.getAllUsers();
 			courses = courseService.getAllCourses();
-			System.out.println("I'm in UserHandler, getting all users for You");
 			json.put("users", users);
 			json.put("courses", courses);
-
-			return new JSONResponse(json);
-		}
-		else {
-			json.put("user", u);
 			
 		}
+		json.put("role", role);
 		return new JSONResponse(json);
 		
 	}
