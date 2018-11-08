@@ -29,15 +29,17 @@ public class HomeHandler extends Handler{
 	
 	@Override
 	public ResponseHandler doPost(HttpServletRequest request) {
+		List<User> users;
+		List<Course> courses;
 		System.out.println("Getting all bookings (I'm in userHandler)");
-//		String userId = getBody(request).toString().replaceAll("\"", "");
+		String userId = getBody(request).toString().replaceAll("\"", "");
 		JSONObject json = new JSONObject();;
-//		User u = service.getUserByUserId(userId);
-//		String role = u.getRole();
+		User u = service.getUserByUserId(userId);
+		String role = u.getRole();
 		ResponseHandler rh;
-//		if(role.equalsIgnoreCase("LECTURER") || role.equalsIgnoreCase("ADMIN")) {
-			List<User> users = service.getAllUsers();
-			List<Course> courses = courseService.getAllCourses();
+		if(role.equalsIgnoreCase("LECTURER") || role.equalsIgnoreCase("ADMIN")) {
+			users = service.getAllUsers();
+			courses = courseService.getAllCourses();
 			System.out.println("I'm in UserHandler, getting all users for You");
 			json.put("users", users);
 			json.put("courses", courses);
@@ -45,15 +47,15 @@ public class HomeHandler extends Handler{
 			service.getMappedUsers(users);
 			return new JSONResponse(json);
 		}
-//		else {
-//			rh = new ResponseHandler();
-//			rh.setStatusCode(302);
-//			rh.setContentType("text/plain");
-//			
-//		}
-//		return rh;
+		else {
+			rh = new ResponseHandler();
+			rh.setStatusCode(302);
+			rh.setContentType("text/plain");
+			
+		}
+		return rh;
 		
-//	}
+	}
 	
 	private String getBody(HttpServletRequest req) {
 		  String body = "";

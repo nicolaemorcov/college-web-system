@@ -1,12 +1,9 @@
-app.controller("logoutController", function($scope, $cookies, $location) {
+app.controller("logoutController", function($scope, $cookies, $location, $http) {
 	console.log("Hello from outside");
 
 	$scope.login = function(){
 		$location.path("/login")
 	}
-	
-	$scope.logout = function() {
-
 		$http({
 			method: 'get',
 			url: '/auth/logout',
@@ -14,9 +11,10 @@ app.controller("logoutController", function($scope, $cookies, $location) {
 			
 		})
 		.then(function(response){
-			$cookies.get("userId");
-			$.cookies.del('userId');
+			var cook = $cookies.get("userId");
+			$cookies.remove("userId");
+			console.log(cook);
+			$location.path("/")
 		})
 		
-	}
 })

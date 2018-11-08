@@ -14,7 +14,7 @@ app.controller("loginController", function($scope, $http, $window, $location, $c
 
             if (response.status == 200) {
             	$cookieStore.put("userId", userId)
-            	$window.location.href="index.html";
+            	$location.path("/main");
             }
         })
     }
