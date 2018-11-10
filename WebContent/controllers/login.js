@@ -20,7 +20,7 @@ app.controller("loginController", function($scope, $http, $window, $location, $c
     }
     
     $scope.getRegister = function(){
-    	$location.path("/register")
+    	$location.path("/register");
     }
     
 })

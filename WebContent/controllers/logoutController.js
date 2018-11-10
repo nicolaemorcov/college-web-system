@@ -14,7 +14,7 @@ app.controller("logoutController", function($scope, $cookies, $location, $http) 
 			var cook = $cookies.get("userId");
 			$cookies.remove("userId");
 			console.log(cook);
-			$location.path("/")
+			$location.path("/");
 		})
 		
 })
