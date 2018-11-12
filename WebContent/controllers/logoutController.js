@@ -1,4 +1,4 @@
-app.controller("logoutController", function($scope, $cookies, $location, $http) {
+app.controller("logoutController", function($scope, $cookies, $location, $http, $window) {
 	console.log("Hello from outside");
 
 	$scope.login = function(){
@@ -14,7 +14,7 @@ app.controller("logoutController", function($scope, $cookies, $location, $http) 
 			var cook = $cookies.get("userId");
 			$cookies.remove("userId");
 			console.log(cook);
-			$location.path("/");
+			$window.location.href = '/index.html';
 		})
 		
 })
