@@ -26,9 +26,8 @@ public class userPageHandler extends Handler{
 		System.out.println("Getting the user details (i'm in userpageHandler)");
 		
 		String sid = request.getParameter("studentId");
-		String theId = getBody(request);
-		int id = Integer.parseInt(theId);
-		User user = service.getUserById(id);
+		String userId = getBody(request).toString().replaceAll("\"", "");
+		User user = service.getUserByUserId(userId);
 		JSONObject json = new JSONObject();
 		json.put("user", user);
 		

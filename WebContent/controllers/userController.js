@@ -1,5 +1,6 @@
-app.controller("userController", function($scope, $http, myFactory){
+app.controller("userController", function($scope, $http, myFactory, $cookies){
 	var studentId;
+	var userId = $cookies.get("userId");
 	var student = myFactory.get();
 	studentId = student.id;
 	console.log("UserController used");
@@ -13,7 +14,7 @@ app.controller("userController", function($scope, $http, myFactory){
 		method: 'post',
 		url: 'services/userDetails',
 		contentType: 'application/json',
-		data: studentId
+		data: userId
 	}).then(function(data){
 		$scope.student = data.data.data.user;
 //		console.log(student);

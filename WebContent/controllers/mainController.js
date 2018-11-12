@@ -24,12 +24,18 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
         	data: userId
         })
         .then(function(response){
-        	var courses = response.data.data.courses;
-        	var users = response.data.data.users;
-        	console.log(response.data.status);
-            $scope.users = users;
-            $scope.courses = courses;
-            myCourses.set(courses);
+        	var data = response.data.data;
+        	if(data.role == "STUDENT"){
+        		$location.path("/userDetail")
+        	}
+        	else{
+	        	var courses = data.courses;
+	        	var users = data.users;
+	        	console.log(response.data.status);
+	            $scope.users = users;
+	            $scope.courses = courses;
+	            myCourses.set(courses);
+        	}
         })
         
         
