@@ -43,14 +43,15 @@ app.config(function($routeProvider) {
     });
     
 });
-app.controller("indexController", function($scope, $cookies){
+app.controller("indexController", function($scope, $cookies, $location){
 	var userId = $cookies.get("userId");
 	if(userId){
 		$scope.showRegister = false;
+		$location.path("/main");
 	}else{
 		$scope.showRegister = true;
 	}
-	$scope.showTutorAdmin = false;
+//	$scope.showTutorAdmin = false;
 	
 })
 
