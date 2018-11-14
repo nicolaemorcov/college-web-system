@@ -1,4 +1,4 @@
-app.controller("mainController", function($scope, $http, $location, $log, myFactory, myCourses, $cookies) {
+app.controller("mainController", function($scope, $http, $location,$cookieStore, $log, myFactory, myCourses, $cookies) {
 	var userId = $cookies.get("userId");
 	// check if logged in
     if(userId == null){
@@ -111,7 +111,7 @@ app.controller("mainController", function($scope, $http, $location, $log, myFact
         
         // goes to user Page
         $scope.getUserPage = function(x){
-// $scope.selectedUser = myFactory.get();
+        	$scope.selectedUser = myFactory.get();
         	$location.path('userDetail').search({email: x.email});
         	myFactory.set(x);
         }

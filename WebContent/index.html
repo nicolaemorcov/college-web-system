@@ -19,9 +19,9 @@
             <div class="logo">LOGO</div>
             <div class="menu">
                 <ul>
-                    <li><a href="#!/">Home</a></li>
+                    <li><a ng-style="active" href="#!/">Home</a></li>
 					<li><a href="#!main">Dashboard</a></li>
-                    <li><a href="#!enroll">Enroll</a></li>
+                    <li ng-show="showTutorAdmin"><a href="#!enroll">Enroll</a></li>
                     <li ng-show="showTutorAdmin"><a href="#!courseReg">Register Course</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Make an enquiry</a></li>

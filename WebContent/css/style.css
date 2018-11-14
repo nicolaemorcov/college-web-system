@@ -6,6 +6,7 @@ body {
 }
 
 body {
+	padding-top: 100px;
     background-color: #F2EFE4;
     width: 100%;
     height: 100vh;
@@ -93,6 +94,7 @@ ul li:nth-child(7) a {
     border: none;
     margin-top: 40px;
 }
+
 table{
 	padding-top: 100px;
 }
@@ -103,7 +105,10 @@ table{
 	width: 80%;
 	padding-top: 100px;
 }
-
+/* Add a color to the active/current link */
+.menu a.active{
+	background-color: #BD3632;
+}
 .myTable, th, td{
 	border: 1px solid black;
 	border-collapse: collapse;
