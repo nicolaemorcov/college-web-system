@@ -26,6 +26,10 @@ app.config(function($routeProvider) {
     .when("/paris", {
         templateUrl: "courseReg.htm"
     })
+    .when("/studentEntry",{
+    	templateUrl: "studentEntry.html",
+    	controller: "studentEntryController"
+    })
     .when("/userDetail",{
     	templateUrl: "userDetail.htm",
     	controller: "userController"

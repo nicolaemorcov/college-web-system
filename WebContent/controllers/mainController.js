@@ -26,7 +26,7 @@ app.controller("mainController", function($scope, $http, $location,$cookieStore,
         .then(function(response){
         	var data = response.data.data;
         	if(data.role == "STUDENT"){
-        		$location.path("/userDetail")
+        		$location.path("/studentEntry")
         	}
         	else{
 	        	var courses = data.courses;

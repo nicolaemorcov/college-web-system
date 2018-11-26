@@ -44,6 +44,7 @@ public class HomeHandler extends Handler{
 			
 		}
 		json.put("role", role);
+		json.put("user", u);
 		return new JSONResponse(json);
 		
 	}
