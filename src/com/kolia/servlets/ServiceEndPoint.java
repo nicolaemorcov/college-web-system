@@ -11,12 +11,12 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kolia.authentication.LoginHandler;
 import com.kolia.handlers.DeleteHandler;
 import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;
 import com.kolia.handlers.HomeHandler;
 import com.kolia.handlers.ResponseHandler;
+import com.kolia.handlers.StudentHandler;
 import com.kolia.handlers.UploadHandler;
 import com.kolia.handlers.coursePageHandler;
 import com.kolia.handlers.userPageHandler;
@@ -85,6 +85,7 @@ public class ServiceEndPoint extends Endpoint {
 		addHandler(coursePageHandler.class, "(?i)^/services/courseDetails");
 		addHandler(UploadHandler.class, "(?i)^/services/upload");
 		addHandler(DeleteHandler.class, "(?i)^/services/delete");
+		addHandler(StudentHandler.class, "(?i)^/services/student");
 	}
 	
 }

@@ -41,14 +41,6 @@
     <servlet-class>com.kolia.servlets.CourseServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>EditServlet</servlet-name>
-    <servlet-class>com.kolia.servlets.EditServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>EditServlet2</servlet-name>
-    <servlet-class>com.kolia.servlets.EditServlet2</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>EnrollServlet</servlet-name>
     <servlet-class>com.kolia.servlets.EnrollServlet</servlet-class>
   </servlet>
@@ -63,14 +55,6 @@
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/upload</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>EditServlet</servlet-name>
-    <url-pattern>/edit</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>EditServlet2</servlet-name>
-    <url-pattern>/edit2</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Authentication</servlet-name>

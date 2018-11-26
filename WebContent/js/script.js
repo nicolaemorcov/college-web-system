@@ -7,6 +7,9 @@ app.config(function($routeProvider) {
     })
     .when("/main", {
         templateUrl: "main.htm"
+	})
+	.when("/coursesPage", {
+    	templateUrl: "coursesPage.html",
     })
     .when("/register", {
     	templateUrl: "register.html",
@@ -51,9 +54,11 @@ app.controller("indexController", function($scope, $cookies, $location){
 	var userId = $cookies.get("userId");
 	if(userId){
 		$scope.showRegister = false;
+		$scope.showLogout = true;
 		$location.path("/main");
 	}else{
 		$scope.showRegister = true;
+		$scope.showLogout = false;
 	}
 //	$scope.showTutorAdmin = false;
 	

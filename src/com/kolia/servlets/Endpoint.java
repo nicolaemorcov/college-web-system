@@ -23,6 +23,7 @@ import com.kolia.handlers.EditHandler;
 import com.kolia.handlers.Handler;
 import com.kolia.handlers.HomeHandler;
 import com.kolia.handlers.ResponseHandler;
+import com.kolia.handlers.StudentHandler;
 import com.kolia.handlers.UploadHandler;
 import com.kolia.handlers.coursePageHandler;
 import com.kolia.handlers.userPageHandler;
@@ -115,6 +116,8 @@ public class Endpoint extends HttpServlet {
 					return new LogoutHandler(dbManager);
 				case "com.kolia.registration.RegistrationHandler":
 					return new RegistrationHandler(dbManager);
+				case "com.kolia.handlers.StudentHandler":
+					return new StudentHandler(dbManager);
 				}
 
 			}
