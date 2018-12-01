@@ -1,6 +1,28 @@
 <div ng-controller="studentEntryController">
-    <h1 align="center">My Profile</h1>
-    <h2>{{student.firstName + " " + student.lastName}}</h2>
-    <a href="#!enroll">Enroll to a Course</a><br> 
-    </span> <br> <br> <button ng-click="getCoursesPage()">Courses</button>
+	<h1 align="center">My Profile</h1>
+	<h2>{{student.firstName + " " + student.lastName}}</h2>
+
+	<table align="center">
+		<thead>
+			<tr>
+				<th>course id</th>
+				<th>Course Name</th>
+				<th>Course Length</th>
+				<th>Tuition Fee</th>
+				<th>Start Date</th>
+				<th>Finish Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{student.course.id}}</td>
+				<td>{{student.course.name}}</td>
+				<td>{{student.course.length}}</td>
+				<td><span>&#163;</span> {{student.course.courseFee}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="#!enroll">Enroll to a Course</a><br> </span> <br> <br>
+	<button ng-click="getCoursesPage()">Courses</button>
 </div>

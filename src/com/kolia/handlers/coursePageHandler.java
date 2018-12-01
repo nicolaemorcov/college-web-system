@@ -2,6 +2,8 @@ package com.kolia.handlers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,11 +26,12 @@ public class coursePageHandler extends Handler{
 	
 	public ResponseHandler doPost(HttpServletRequest request) {
 		System.out.println("Getting course details .....");
-		
+		List<Course> courses = new ArrayList<>();
+		courses = courseService.getAllCourses();
 		String name = getBody(request);
 		Course course = courseService.getCourseByName(name);
 		JSONObject json = new JSONObject();
-		json.put("course", course);
+		json.put("courses", courses);
 		
 		return new JSONResponse(json);
 		

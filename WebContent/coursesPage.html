@@ -1,3 +1,25 @@
 <div ng-controller="courseController">
-    <h1 align="center">Courses</h1>
-</div> 
+	<h1 align="center">Courses</h1>
+
+	<table id="table1" align="center">
+		<thead>
+
+			<tr>
+				<th>course id</th>
+				<th>Course Name</th>
+				<th>Course Length</th>
+				<th>Tuition Fee</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="x in courses" id="{{x.id}}" ng-model="selectedItem"
+				ng-click="getCoursePage(x)">
+				<td class="courseIdLength">{{x.id}}</td>
+				<td>{{x.name}}</td>
+				<td>{{x.length}}</td>
+				<td><span>&#163;</span> {{x.courseFee}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
