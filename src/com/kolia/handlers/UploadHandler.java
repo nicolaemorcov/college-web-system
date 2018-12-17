@@ -46,7 +46,7 @@ public class UploadHandler extends Handler{
 				String courseName = line[0];
 				int length = Integer.parseInt(line[1]);
 				double tuitionFee = Double.parseDouble(line[2]);
-				Course course = new Course(courseName, length, tuitionFee);
+				Course course = new Course(courseName, length, tuitionFee, length, length, length);
 				courseService.registerCourse(course);
 				
 				

@@ -69,6 +69,10 @@ app.controller("mainController", function($scope, $http, $location,$cookieStore,
             else return 'display';
         };
         
+        $scope.getRegisterCoursePage = function(){
+        	$location.path("/courseRegister")
+        }
+        
         $scope.editContact = function (x) {
             $scope.selected = angular.copy(x);
         };

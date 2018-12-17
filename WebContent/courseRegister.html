@@ -1,46 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="ISO-8859-1">
-	<title>Course register</title>
-	<style type="text/css">
-		h3{font-family: Calibri; font-size: 22pt; font-style: normal; font-weight: bold; color: SlateBlue;
-		text-align: center; text-decoration: underline;}
-		table{font-family: Calibri; color: white; font-size: 11pt; font-style: normal; width: 50%;
-		text-align: ; background-color: slateBlue; border-collapse: collapse; border: 2px solid navy;
-		}
-		table.inner{border: 0px;}
-	</style>
-</head>
-<body>
-	<h3>Course Registration Form</h3>
-	<form action="courseServlet" method="post">
+<div ng-controller="registerCourseController">
+	<h1 align="center">Course Registration Form</h1>
 		<table align="center" cellpadding="10">
 			<tr>
 				<td>Course Name</td>
-				<td><input type="text" name="courseName" maxlength="30">(max 30 characters a-z and A-Z)</td>
+				<td><input type="text" name="courseName" ng-model="courseName" value="" maxlength="30">(max 30 characters a-z and A-Z)</td>
 			</tr>
 			<tr>
 				<td>Course Length</td>
 				<td>
-				<select name="courseLength" style="width: 50px">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
+				<select name="courseLength" ng-model="courseLength" style="width: 50px">
+					<option name="courseLength">1</option>
+					<option name="courseLength">2</option>
+					<option name="courseLength">3</option>
 				</select></td>
 			</tr>
 			<tr>
 				<td>Tuition Fee</td>
-				<td><input type="text" name="tuitionFees" maxlength="30">(max 30 characters a-z and A-Z)</td>
+				<td><input type="text" name="tuitionFees" ng-model="tuitionFees" value="" maxlength="30">(max 30 characters a-z and A-Z)</td>
 			</tr>
 			
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" name="register" value="Submit">
+					<button ng-click="registerCourse()">Save</button>
 					<input type="reset" value="Reset">
 				</td>
 			</tr>
 		</table>
-	</form>
-</body>
-</html>
+
+</div>

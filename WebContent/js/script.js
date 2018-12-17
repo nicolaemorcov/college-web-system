@@ -15,6 +15,10 @@ app.config(function($routeProvider) {
     	templateUrl: "register.html",
     	controller: "registerController"
     })
+    .when("/courseRegister", {
+    	templateUrl: "courseRegister.html",
+    	controller: "registerCourseController"
+    })
     .when("/enroll", {
         templateUrl: "enroll.htm"
     })
@@ -63,6 +67,7 @@ app.controller("indexController", function($scope, $cookies, $location){
 //	$scope.showTutorAdmin = false;
 	
 })
+
 
 
 app.factory("myFactory", function(){

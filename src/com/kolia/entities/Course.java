@@ -1,5 +1,7 @@
 package com.kolia.entities;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,6 +26,8 @@ public class Course {
 	private int length;
 	@Column(name="course_fee")
 	private double tuitionFees;
+	@Column(name="start_date")
+	private Date startDate;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="course", cascade = CascadeType.ALL)
 	private List<User> users;
 	
@@ -33,16 +37,20 @@ public class Course {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Course(String name, int length, double fee) {
+	public Course(String name, int length, double fee, int year, int month, int dayOfMonth) {
 		this.name = name;
 		this.length = length;
 		this.tuitionFees = fee;
+		GregorianCalendar calendar = new GregorianCalendar(year, month -1, dayOfMonth);
+		startDate = calendar.getTime();
 	}
-	public Course(int id, String name, int length, double fee) {
+	public Course(int id, String name, int length, double fee, int year, int month, int dayOfMonth) {
 		this.id = id;
 		this.name = name;
 		this.length = length;
 		this.tuitionFees = fee;
+		GregorianCalendar calendar = new GregorianCalendar(year, month -1, dayOfMonth);
+		startDate = calendar.getTime();
 	}
 
 	public double getCourseFee() {
@@ -75,6 +83,14 @@ public class Course {
 
 	public void setLength(int length) {
 		this.length = length;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 	
 	
